@@ -174,6 +174,16 @@ details.bench .chips{margin-top:6px}
     <section class="board" id="board" aria-label="Kvote"></section>
   </div>
 
+  <section class="panel" id="statsSec" aria-label="Statistika meča (specijali)">
+    <div class="mk-h">
+      <h2>Specijali · Statistika meča</h2>
+      <span class="or">šutevi, šutevi u okvir, korneri, faulovi, žuti kartoni (NB × Beta-Binomial)</span>
+    </div>
+    <div class="scroll" id="statsOverview" style="margin-bottom:12px"></div>
+    <div class="lg-tabs" id="statTabs" style="margin-bottom:12px"></div>
+    <div class="board" id="statBoard"></div>
+  </section>
+
   <div class="lower">
     <section class="panel rt" aria-label="Rejtinzi timova">
       <div class="mk-h"><h2>Rejtinzi timova</h2><span class="or">golovi na neutralnom terenu protiv prosečnog tima</span></div>
@@ -385,6 +395,117 @@ function renderBoard(L) {
   $("board").innerHTML = html;
 }
 
+const STAT_META = [
+  {k: "shots", n: "Šutevi"},
+  {k: "sot", n: "Šutevi u okvir"},
+  {k: "corners", n: "Korneri"},
+  {k: "fouls", n: "Faulovi"},
+  {k: "yellow", n: "Žuti kartoni"}
+];
+let activeStat = "corners";
+
+function renderStats(L) {
+  const sec = $("statsSec");
+  if (!D.stats) { sec.style.display = "none"; return; }
+  sec.style.display = "";
+  const m1 = +$("m1x2").value / 100, m2 = +$("m2w").value / 100, lad = PE.ladder;
+  const hN = T[st.h].short, aN = T[st.a].short;
+  const tw = (d, lineA, signA, lineB, signB) => {
+    const A = PE.fairFromDist(d, lineA, signA), B = PE.fairFromDist(d, lineB, signB);
+    const px = PE.twoWay(A.odds, B.odds, m2).map(lad);
+    return {fa: A.odds, fb: B.odds, a: px[0], b: px[1]};
+  };
+  const calc = {};
+  for (const sm of STAT_META) {
+    const r = D.stats[sm.k];
+    if (!r) continue;
+    const [mh, ma] = PE.statMeans(r, st.h, st.a, L.lh, L.la);
+    const J = PE.statJoint(mh, ma, r.k, r.c);
+    const [ph, pd, pa] = PE.oneXTwo(J), p3 = PE.applyMargin([ph, pd, pa], m1).map(lad);
+    const totD = PE.dist(J, (i, j) => i + j), diffD = PE.dist(J, (i, j) => i - j);
+    const hD = PE.dist(J, (i, j) => i), aD = PE.dist(J, (i, j) => j);
+    const ctr = m => Math.floor(m) + 0.5;
+    const totLines = [-2, -1, 0, 1, 2].map(d => ctr(mh + ma) + d).filter(l => l >= 0.5).map(l => ({l, ...tw(totD, -l, 1, l, -1)}));
+    const mainTot = totLines.reduce((b, x) => Math.abs(x.fa - x.fb) < Math.abs(b.fa - b.fb) ? x : b, totLines[0]);
+    const hcpCenter = Math.floor(ma - mh) + 0.5;
+    const hcpLines = [-2, -1, 0, 1, 2].map(d => hcpCenter + d).map(l => ({l, ...tw(diffD, l, 1, -l, -1)}));
+    const mainHcp = hcpLines.reduce((b, x) => Math.abs(x.fa - x.fb) < Math.abs(b.fa - b.fb) ? x : b, hcpLines[0]);
+    const hLines = [-1, 0, 1].map(d => ctr(mh) + d).filter(l => l >= 0.5).map(l => ({l, ...tw(hD, -l, 1, l, -1)}));
+    const aLines = [-1, 0, 1].map(d => ctr(ma) + d).filter(l => l >= 0.5).map(l => ({l, ...tw(aD, -l, 1, l, -1)}));
+    calc[sm.k] = {sm, r, mh, ma, ph, pd, pa, p3, totLines, mainTot, hcpLines, mainHcp, hLines, aLines};
+  }
+  // Overview table across all 5 stats
+  $("statsOverview").innerHTML = `<table class="rt" style="width:100%;border-collapse:collapse;font-size:13px">
+    <thead><tr>
+      <th style="text-align:left;padding:4px 6px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px;text-transform:uppercase">Tržište</th>
+      <th style="text-align:right;padding:4px 6px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px">μ ${hN}</th>
+      <th style="text-align:right;padding:4px 6px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px">μ ${aN}</th>
+      <th style="text-align:right;padding:4px 6px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px">μ Ukupno</th>
+      <th style="text-align:right;padding:4px 6px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px">1 (${hN})</th>
+      <th style="text-align:right;padding:4px 6px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px">X</th>
+      <th style="text-align:right;padding:4px 6px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px">2 (${aN})</th>
+      <th style="text-align:right;padding:4px 6px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px">Glavna linija</th>
+      <th style="text-align:right;padding:4px 6px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px">Više</th>
+      <th style="text-align:right;padding:4px 6px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px">Manje</th>
+      <th style="text-align:right;padding:4px 6px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px">Hendikep (${hN})</th>
+      <th style="text-align:right;padding:4px 6px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px">H1</th>
+      <th style="text-align:right;padding:4px 6px;border-bottom:1px solid var(--line);color:var(--muted);font-size:11px">H2</th>
+    </tr></thead><tbody>` +
+    STAT_META.filter(sm => calc[sm.k]).map(sm => {
+      const c = calc[sm.k], mt = c.mainTot, mhcp = c.mainHcp;
+      return `<tr style="border-bottom:1px solid var(--soft);cursor:pointer" data-sk="${sm.k}">
+        <td style="padding:4px 6px;font-weight:600">${sm.n}</td>
+        <td class="mono" style="text-align:right;padding:4px 6px">${fmt(c.mh, 2)}</td>
+        <td class="mono" style="text-align:right;padding:4px 6px">${fmt(c.ma, 2)}</td>
+        <td class="mono" style="text-align:right;padding:4px 6px;font-weight:600">${fmt(c.mh + c.ma, 2)}</td>
+        <td class="mono" style="text-align:right;padding:4px 6px;color:var(--accent);font-weight:600">${fmt(c.p3[0])}</td>
+        <td class="mono" style="text-align:right;padding:4px 6px">${fmt(c.p3[1])}</td>
+        <td class="mono" style="text-align:right;padding:4px 6px;color:var(--accent);font-weight:600">${fmt(c.p3[2])}</td>
+        <td class="mono" style="text-align:right;padding:4px 6px">${fmt(mt.l, 1)}</td>
+        <td class="mono" style="text-align:right;padding:4px 6px;color:var(--accent);font-weight:600">${fmt(mt.a)}</td>
+        <td class="mono" style="text-align:right;padding:4px 6px;color:var(--accent);font-weight:600">${fmt(mt.b)}</td>
+        <td class="mono" style="text-align:right;padding:4px 6px">${(mhcp.l > 0 ? "+" : "") + fmt(mhcp.l, 1)}</td>
+        <td class="mono" style="text-align:right;padding:4px 6px;color:var(--accent);font-weight:600">${fmt(mhcp.a)}</td>
+        <td class="mono" style="text-align:right;padding:4px 6px;color:var(--accent);font-weight:600">${fmt(mhcp.b)}</td>
+      </tr>`;
+    }).join("") + `</tbody></table>`;
+  $("statsOverview").querySelectorAll("tr[data-sk]").forEach(tr => tr.addEventListener("click", () => { activeStat = tr.dataset.sk; renderStats(L); }));
+
+  $("statTabs").innerHTML = STAT_META.filter(sm => calc[sm.k]).map(sm => {
+    const c = calc[sm.k];
+    return `<button type="button" class="lg-tab" data-sk="${sm.k}" aria-pressed="${sm.k === activeStat}">${sm.n} · <span class="mono" style="font-size:12px">${fmt(c.mh, 1)}–${fmt(c.ma, 1)}</span></button>`;
+  }).join("");
+  $("statTabs").querySelectorAll(".lg-tab").forEach(b => b.addEventListener("click", () => { activeStat = b.dataset.sk; renderStats(L); }));
+
+  const cur = calc[activeStat] || calc[STAT_META[0].k];
+  if (!cur) return;
+  let bhtml = "";
+  bhtml += market(`${cur.sm.n} · Konačan ishod (više)`, [
+    {name: "1 · " + T[st.h].name, prob: cur.ph, fair: 1 / cur.ph, px: cur.p3[0]},
+    {name: "X · jednako", prob: cur.pd, fair: 1 / cur.pd, px: cur.p3[1]},
+    {name: "2 · " + T[st.a].name, prob: cur.pa, fair: 1 / cur.pa, px: cur.p3[2]}
+  ], {note: `μ ${fmt(cur.mh, 2)} – ${fmt(cur.ma, 2)} (Σ ${fmt(cur.mh + cur.ma, 2)})`});
+  bhtml += pairTable(`${cur.sm.n} · Ukupno na meču`, {
+    hA: "Više", hB: "Manje",
+    rows: cur.totLines.map(r => ({label: fmt(r.l, 1), ...r, main: r === cur.mainTot}))
+  }, `k=${cur.r.k >= 1e5 ? "∞" : fmt(cur.r.k, 1)}, c=${fmt(cur.r.c, 3)}`);
+  bhtml += pairTable(`${cur.sm.n} · Hendikep`, {
+    hA: hN, hB: aN,
+    rows: cur.hcpLines.map(r => ({label: (r.l > 0 ? "+" : "") + fmt(r.l, 1), ...r, main: r === cur.mainHcp}))
+  }, "linija za domaćina");
+  const hMain = cur.hLines.reduce((b, x) => Math.abs(x.fa - x.fb) < Math.abs(b.fa - b.fb) ? x : b, cur.hLines[0]);
+  const aMain = cur.aLines.reduce((b, x) => Math.abs(x.fa - x.fb) < Math.abs(b.fa - b.fb) ? x : b, cur.aLines[0]);
+  bhtml += pairTable(`${cur.sm.n} · ${T[st.h].name}`, {
+    hA: "Više", hB: "Manje",
+    rows: cur.hLines.map(r => ({label: fmt(r.l, 1), ...r, main: r === hMain}))
+  }, `μ = ${fmt(cur.mh, 2)}`);
+  bhtml += pairTable(`${cur.sm.n} · ${T[st.a].name}`, {
+    hA: "Više", hB: "Manje",
+    rows: cur.aLines.map(r => ({label: fmt(r.l, 1), ...r, main: r === aMain}))
+  }, `μ = ${fmt(cur.ma, 2)}`);
+  $("statBoard").innerHTML = bhtml;
+}
+
 function renderRatings() {
   const rows = codes.map(c => {
     const t = T[c], gf = Math.exp(D.mu + D.H / 2 + t.att), ga = Math.exp(D.mu + D.H / 2 + t.dfn);
@@ -430,7 +551,7 @@ function update() {
   if (st.h === st.a) { st.a = codes.find(c => c !== st.h); $("selA").value = st.a; }
   document.querySelectorAll(".fx").forEach(b => { const f = D.fixtures[+b.dataset.i]; b.setAttribute("aria-pressed", String(f.h) === st.h && String(f.a) === st.a); });
   const L = lambdas();
-  renderMatch(L); renderLineup($("luH"), st.h, L.xh); renderLineup($("luA"), st.a, L.xa); renderBoard(L);
+  renderMatch(L); renderLineup($("luH"), st.h, L.xh); renderLineup($("luA"), st.a, L.xa); renderBoard(L); renderStats(L);
 }
 
 async function setLeague(key, keepMatch = false) {

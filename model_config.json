@@ -39,5 +39,33 @@
   "prev_season_weight": 0.5
  },
  "late_round": 11,
- "_fit_note": "With mkt_w=1 (tune_mkt.py, pooled 5 leagues). Rounds 1-10: ridge 1.0 (was 2.5) — better on 2025-26 rounds 1-10 and on the 2026-27 holdout (RPS 0.19437 -> 0.19388). Rounds 11+: fit_late, short memory — 2025-26 rounds 11+ RPS 0.20228 -> 0.20060, chosen in-sample; re-check on 2026-27 rounds 11+ once ~10 such rounds are played."
+ "_fit_note": "With mkt_w=1 (tune_mkt.py, pooled 5 leagues). Rounds 1-10: ridge 1.0 (was 2.5) — better on 2025-26 rounds 1-10 and on the 2026-27 holdout (RPS 0.19437 -> 0.19388). Rounds 11+: fit_late, short memory — 2025-26 rounds 11+ RPS 0.20228 -> 0.20060, chosen in-sample; re-check on 2026-27 rounds 11+ once ~10 such rounds are played.",
+ "stats": {
+  "fit": {
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.7
+  },
+  "covariates": true,
+  "shots": {
+   "k": 91.03,
+   "c": 0.04133
+  },
+  "sot": {
+   "k": 204.35,
+   "c": 0.02192
+  },
+  "corners": {
+   "k": 45.45,
+   "c": 0.07835
+  },
+  "fouls": {
+   "k": 152.62,
+   "c": 0.0
+  },
+  "yellow": {
+   "k": 224.22,
+   "c": 0.0
+  }
+ }
 }

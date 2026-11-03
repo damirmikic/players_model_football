@@ -4,7 +4,7 @@
 from collections import Counter
 import json, datetime as dt, os
 import numpy as np, pandas as pd
-import load, leagues, lineups, team_model as tm, player_model as pm, pricing as P
+import load, leagues, lineups, team_model as tm, player_model as pm, stat_model as sm, pricing as P
 
 TODAY = dt.date.fromisoformat(os.environ["TODAY"]) if os.environ.get("TODAY") else dt.date.today()
 HORIZON_DAYS = 10     # fixtures shown in the calculator
@@ -96,12 +96,25 @@ def main():
                "Povrede i postave: FotMob. " if lu_meta else "Bez izvora za povrede – igrače van stroja isključi ručno. ")
             + (f"Postave osvežene {lu_meta['fetched_at'][8:10]}.{lu_meta['fetched_at'][5:7]}. u {lu_meta['fetched_at'][11:16]} UTC." if lu_meta else ""))
     yr = load.CURRENT.split("-")
+    cfg = load.config()
+    stats_out = {}
+    for s in sm.STATS:
+        sc = sm.stat_cfg(cfg, s)
+        sr = sm.fit(M, s, TODAY, sorted(cur), sc, variant="full" if sc.get("covariates", True) else "teams")
+        stats_out[s] = {
+            "mu": round(sr["mu"], 5), "H": round(sr["H"], 5),
+            "beta": [round(x, 5) for x in sr["beta"]],
+            "k": sc["k"], "c": sc["c"],
+            "att": {c: round(v, 4) for c, v in sr["att"].items()},
+            "dfn": {c: round(v, 4) for c, v in sr["dfn"].items()},
+        }
     out = {"asof": str(TODAY), "league": f"{lc['name']} {yr[0]}/{yr[1]}", "league_key": load.LEAGUE,
            "leagues": [{"key": k, "name": v["name"]} for k, v in leagues.LEAGUES.items()], "mu": round(r["mu"], 5), "H": round(r["H"], 5),
-           "rho": load.config()["rho"], "beta_a": load.config()["beta_a"], "beta_inj": load.config().get("beta_inj", load.config()["beta_a"]),
-           "beta_rot": load.config().get("beta_rot", load.config()["beta_a"]),
-           "inj_center": round(inj_c, 4), "rot_center": round(rot_c, 4), "beta_d": load.config()["beta_d"], "teams": teams,
-           "fixtures": fixtures, "backtest": bt, "config": load.config(),
+           "rho": cfg["rho"], "beta_a": cfg["beta_a"], "beta_inj": cfg.get("beta_inj", cfg["beta_a"]),
+           "beta_rot": cfg.get("beta_rot", cfg["beta_a"]),
+           "inj_center": round(inj_c, 4), "rot_center": round(rot_c, 4), "beta_d": cfg["beta_d"], "teams": teams,
+           "stats": stats_out,
+           "fixtures": fixtures, "backtest": bt, "config": cfg,
            "data_note": note}
     os.makedirs("../build", exist_ok=True)
     json.dump(out, open(f"../build/data_{load.LEAGUE}.json", "w"), ensure_ascii=False, separators=(",", ":"))

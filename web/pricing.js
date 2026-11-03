@@ -64,6 +64,66 @@ const PE = (() => {
     }
     return { htft: out, ht1x2: oneXTwo(H1) };
   }
-  return { pois, scoreMatrix, oneXTwo, dist, settle, fairFromDist, applyMargin, twoWay, ladder, htft };
+  function statCovariates(lh, la, t0 = Math.log(2.7)) {
+    const z = Math.log(lh / la), t = Math.log(lh + la) - t0;
+    return [[z, t], [-z, t]];
+  }
+  function statMeans(r, home, away, lh, la) {
+    const [xh, xa] = statCovariates(lh, la);
+    const bh = (r.beta || []).reduce((s, b, i) => s + b * xh[i], 0);
+    const ba = (r.beta || []).reduce((s, b, i) => s + b * xa[i], 0);
+    return [
+      Math.exp(r.mu + r.H + (r.att[home] || 0) + (r.dfn[away] || 0) + bh),
+      Math.exp(r.mu + (r.att[away] || 0) + (r.dfn[home] || 0) + ba)
+    ];
+  }
+  function nbPmfVec(mu, k, n) {
+    const out = new Array(n + 1).fill(0);
+    if (!k || k >= 1e6) {
+      let lp = -mu;
+      for (let y = 0; y <= n; y++) { out[y] = Math.exp(lp); lp += Math.log(mu) - Math.log(y + 1); }
+      return out;
+    }
+    const q = mu / (k + mu);
+    let lp = k * Math.log(k / (k + mu));
+    for (let y = 0; y <= n; y++) { out[y] = Math.exp(lp); lp += Math.log((y + k) / (y + 1) * q); }
+    return out;
+  }
+  function betabinomRow(t, p, c) {
+    const out = new Array(t + 1).fill(0);
+    if (c <= 1e-9) {
+      const lq = Math.log(1 - p), lr = Math.log(p) - Math.log(1 - p);
+      let lp = t * lq;
+      for (let y = 0; y <= t; y++) { out[y] = Math.exp(lp); if (y < t) lp += Math.log((t - y) / (y + 1)) + lr; }
+      return out;
+    }
+    const a = p / c, b = (1 - p) / c, ab = a + b;
+    let lp = 0;
+    for (let j = 0; j < t; j++) lp += Math.log((b + j) / (ab + j));
+    for (let y = 0; y <= t; y++) {
+      out[y] = Math.exp(lp);
+      if (y < t) lp += Math.log((t - y) / (y + 1) * (y + a) / (t - y - 1 + b));
+    }
+    return out;
+  }
+  function statNmax(mh, ma, k) {
+    const mt = mh + ma, sd = Math.sqrt(mt + (k && k < 1e6 ? mt * mt / k : 0));
+    return Math.ceil(mt + 8 * sd + 5);
+  }
+  function statJoint(mh, ma, k, c, nmax) {
+    nmax = nmax || statNmax(mh, ma, k);
+    const pt = nbPmfVec(mh + ma, k, nmax), s = pt.reduce((a, b) => a + b, 0);
+    for (let i = 0; i <= nmax; i++) pt[i] /= s;
+    const p = mh / (mh + ma);
+    const J = Array.from({ length: nmax + 1 }, () => new Array(nmax + 1).fill(0));
+    for (let t = 0; t <= nmax; t++) {
+      if (pt[t] < 1e-15) continue;
+      const row = betabinomRow(t, p, c);
+      for (let y = 0; y <= t; y++) J[y][t - y] += pt[t] * row[y];
+    }
+    return J;
+  }
+  return { pois, scoreMatrix, oneXTwo, dist, settle, fairFromDist, applyMargin, twoWay, ladder, htft,
+           statCovariates, statMeans, nbPmfVec, betabinomRow, statNmax, statJoint };
 })();
 if (typeof module !== "undefined") module.exports = PE;
