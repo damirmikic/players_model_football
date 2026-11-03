@@ -163,6 +163,7 @@ details.bench .chips{margin-top:6px}
       <div class="side away"><span class="tn" id="aName"></span><span class="meta" id="aMeta"></span></div>
     </div>
     <div class="lam" id="lam"></div>
+    <div id="statStrip" style="display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:12.5px"></div>
   </section>
 
   <div class="main">
@@ -171,7 +172,10 @@ details.bench .chips{margin-top:6px}
       <div class="panel" id="luA"></div>
       <p class="hint">Klik na igrača u postavi ga isključuje (zamena je najbolji raspoloživi igrač iste pozicije). Klik na igrača sa klupe ga ubacuje umesto najslabije opcije iste pozicije. Broj uz ime je napadački doprinos: xG + xA na 90 minuta, sa shrinkage-om ka proseku pozicije. Crvena tačka: povreda ili suspenzija po poslednjem FPL snimku.</p>
     </section>
-    <section class="board" id="board" aria-label="Kvote"></section>
+    <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+      <nav class="lg-tabs" id="boardTabs" style="margin-top:0" aria-label="Izbor tržišta"></nav>
+      <section class="board" id="board" aria-label="Kvote"></section>
+    </div>
   </div>
 
   <section class="panel" id="statsSec" aria-label="Statistika meča (specijali)">
@@ -532,11 +536,12 @@ const STAT_META = [
   {k: "yellow", n: "Žuti kartoni"}
 ];
 let activeStat = "corners";
+let boardMode = "goals";
 
 function renderStats(L) {
   const sec = $("statsSec");
-  if (!D.stats) { sec.style.display = "none"; return; }
-  sec.style.display = "";
+  if (!D.stats) { sec.style.display = "none"; $("statStrip").style.display = "none"; $("boardTabs").style.display = "none"; return; }
+  sec.style.display = ""; $("statStrip").style.display = "flex"; $("boardTabs").style.display = "flex";
   const m1 = +$("m1x2").value / 100, m2 = +$("m2w").value / 100, lad = PE.ladder;
   const hN = T[st.h].short, aN = T[st.a].short;
   const tw = (d, lineA, signA, lineB, signB) => {
@@ -562,6 +567,55 @@ function renderStats(L) {
     const hLines = [-1, 0, 1].map(d => ctr(mh) + d).filter(l => l >= 0.5).map(l => ({l, ...tw(hD, -l, 1, l, -1)}));
     const aLines = [-1, 0, 1].map(d => ctr(ma) + d).filter(l => l >= 0.5).map(l => ({l, ...tw(aD, -l, 1, l, -1)}));
     calc[sm.k] = {sm, r, mh, ma, ph, pd, pa, p3, totLines, mainTot, hcpLines, mainHcp, hLines, aLines};
+  }
+  const statCardsHtml = cur => {
+    let bhtml = "";
+    bhtml += market(`${cur.sm.n} · Konačan ishod (više)`, [
+      {name: "1 · " + T[st.h].name, prob: cur.ph, fair: 1 / cur.ph, px: cur.p3[0]},
+      {name: "X · jednako", prob: cur.pd, fair: 1 / cur.pd, px: cur.p3[1]},
+      {name: "2 · " + T[st.a].name, prob: cur.pa, fair: 1 / cur.pa, px: cur.p3[2]}
+    ], {note: `μ ${fmt(cur.mh, 2)} – ${fmt(cur.ma, 2)} (Σ ${fmt(cur.mh + cur.ma, 2)})`});
+    bhtml += pairTable(`${cur.sm.n} · Ukupno na meču`, {
+      hA: "Više", hB: "Manje",
+      rows: cur.totLines.map(r => ({label: fmt(r.l, 1), ...r, main: r === cur.mainTot}))
+    }, `k=${cur.r.k >= 1e5 ? "∞" : fmt(cur.r.k, 1)}, c=${fmt(cur.r.c, 3)}`);
+    bhtml += pairTable(`${cur.sm.n} · Hendikep`, {
+      hA: hN, hB: aN,
+      rows: cur.hcpLines.map(r => ({label: (r.l > 0 ? "+" : "") + fmt(r.l, 1), ...r, main: r === cur.mainHcp}))
+    }, "linija za domaćina");
+    const hMain = cur.hLines.reduce((b, x) => Math.abs(x.fa - x.fb) < Math.abs(b.fa - b.fb) ? x : b, cur.hLines[0]);
+    const aMain = cur.aLines.reduce((b, x) => Math.abs(x.fa - x.fb) < Math.abs(b.fa - b.fb) ? x : b, cur.aLines[0]);
+    bhtml += pairTable(`${cur.sm.n} · ${T[st.h].name}`, {
+      hA: "Više", hB: "Manje",
+      rows: cur.hLines.map(r => ({label: fmt(r.l, 1), ...r, main: r === hMain}))
+    }, `μ = ${fmt(cur.mh, 2)}`);
+    bhtml += pairTable(`${cur.sm.n} · ${T[st.a].name}`, {
+      hA: "Više", hB: "Manje",
+      rows: cur.aLines.map(r => ({label: fmt(r.l, 1), ...r, main: r === aMain}))
+    }, `μ = ${fmt(cur.ma, 2)}`);
+    return bhtml;
+  };
+  // Top match strip with expected stats
+  $("statStrip").innerHTML = `<span class="muted">Očekivana statistika (μ):</span>` + STAT_META.filter(sm => calc[sm.k]).map(sm => {
+    const c = calc[sm.k];
+    return `<button type="button" class="chip" data-bm="${sm.k}" title="Prikaži kvote za: ${sm.n}"><b>${sm.n}</b><i>${fmt(c.mh, 1)} – ${fmt(c.ma, 1)} (Σ ${fmt(c.mh + c.ma, 1)})</i></button>`;
+  }).join("");
+  $("statStrip").querySelectorAll("button[data-bm]").forEach(b => b.addEventListener("click", () => {
+    boardMode = b.dataset.bm; activeStat = b.dataset.bm; renderBoard(L); renderStats(L);
+  }));
+  // Market switcher bar above #board
+  $("boardTabs").innerHTML = `<button type="button" class="lg-tab" data-bm="goals" aria-pressed="${boardMode === "goals"}">Golovi</button>` +
+    STAT_META.filter(sm => calc[sm.k]).map(sm => {
+      const c = calc[sm.k];
+      return `<button type="button" class="lg-tab" data-bm="${sm.k}" aria-pressed="${boardMode === sm.k}">${sm.n} · <span class="mono" style="font-size:12px">${fmt(c.mh, 1)}–${fmt(c.ma, 1)}</span></button>`;
+    }).join("");
+  $("boardTabs").querySelectorAll(".lg-tab").forEach(b => b.addEventListener("click", () => {
+    boardMode = b.dataset.bm;
+    if (boardMode !== "goals") activeStat = boardMode;
+    renderBoard(L); renderStats(L);
+  }));
+  if (boardMode !== "goals" && calc[boardMode]) {
+    $("board").innerHTML = statCardsHtml(calc[boardMode]);
   }
   // Overview table across all 5 stats
   $("statsOverview").innerHTML = `<table class="rt" style="width:100%;border-collapse:collapse;font-size:13px">
@@ -608,31 +662,7 @@ function renderStats(L) {
 
   const cur = calc[activeStat] || calc[STAT_META[0].k];
   if (!cur) return;
-  let bhtml = "";
-  bhtml += market(`${cur.sm.n} · Konačan ishod (više)`, [
-    {name: "1 · " + T[st.h].name, prob: cur.ph, fair: 1 / cur.ph, px: cur.p3[0]},
-    {name: "X · jednako", prob: cur.pd, fair: 1 / cur.pd, px: cur.p3[1]},
-    {name: "2 · " + T[st.a].name, prob: cur.pa, fair: 1 / cur.pa, px: cur.p3[2]}
-  ], {note: `μ ${fmt(cur.mh, 2)} – ${fmt(cur.ma, 2)} (Σ ${fmt(cur.mh + cur.ma, 2)})`});
-  bhtml += pairTable(`${cur.sm.n} · Ukupno na meču`, {
-    hA: "Više", hB: "Manje",
-    rows: cur.totLines.map(r => ({label: fmt(r.l, 1), ...r, main: r === cur.mainTot}))
-  }, `k=${cur.r.k >= 1e5 ? "∞" : fmt(cur.r.k, 1)}, c=${fmt(cur.r.c, 3)}`);
-  bhtml += pairTable(`${cur.sm.n} · Hendikep`, {
-    hA: hN, hB: aN,
-    rows: cur.hcpLines.map(r => ({label: (r.l > 0 ? "+" : "") + fmt(r.l, 1), ...r, main: r === cur.mainHcp}))
-  }, "linija za domaćina");
-  const hMain = cur.hLines.reduce((b, x) => Math.abs(x.fa - x.fb) < Math.abs(b.fa - b.fb) ? x : b, cur.hLines[0]);
-  const aMain = cur.aLines.reduce((b, x) => Math.abs(x.fa - x.fb) < Math.abs(b.fa - b.fb) ? x : b, cur.aLines[0]);
-  bhtml += pairTable(`${cur.sm.n} · ${T[st.h].name}`, {
-    hA: "Više", hB: "Manje",
-    rows: cur.hLines.map(r => ({label: fmt(r.l, 1), ...r, main: r === hMain}))
-  }, `μ = ${fmt(cur.mh, 2)}`);
-  bhtml += pairTable(`${cur.sm.n} · ${T[st.a].name}`, {
-    hA: "Više", hB: "Manje",
-    rows: cur.aLines.map(r => ({label: fmt(r.l, 1), ...r, main: r === aMain}))
-  }, `μ = ${fmt(cur.ma, 2)}`);
-  $("statBoard").innerHTML = bhtml;
+  $("statBoard").innerHTML = statCardsHtml(cur);
 }
 
 function renderRatings() {
