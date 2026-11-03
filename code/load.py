@@ -11,6 +11,8 @@ RAW = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "raw")
 SEASONS = leagues.SEASONS
 CURRENT = leagues.CURRENT
 LEAGUE = os.environ.get("LEAGUE", "EPL")
+# football-data.co.uk match statistics: key -> column suffix (H<col> home, A<col> away)
+STAT_COLS = {"shots": "S", "sot": "ST", "fouls": "F", "corners": "C", "yellow": "Y"}
 
 
 def config():
@@ -152,7 +154,8 @@ def load_season(season):
 def attach_odds(matches, season):
     """Closing 1X2 odds from football-data.co.uk. Team names are mapped by voting on (date, score) pairs,
     so no alias table is needed. Prefers Betfair exchange closing, then market average closing; also stores the
-    pre-match odds (football-data collects them on Friday / Tuesday before the round) as odds_open."""
+    pre-match odds (football-data collects them on Friday / Tuesday before the round) as odds_open.
+    Also attaches match statistics m["stats"] = {stat: (home, away)} (STAT_COLS) and m["referee"] (England only)."""
     path = _p(season, "fd_odds.csv")
     if not os.path.exists(path):
         return 0
@@ -182,6 +185,15 @@ def attach_odds(matches, season):
         m = idx.get((name2id.get(r["HomeTeam"]), name2id.get(r["AwayTeam"])))
         if not m:
             continue
+        st = {}
+        for key, col in STAT_COLS.items():                          # match statistics (stat_model.py)
+            h, a = r.get("H" + col, ""), r.get("A" + col, "")
+            if h.strip() != "" and a.strip() != "":
+                st[key] = (int(fnum(h)), int(fnum(a)))
+        if st:
+            m["stats"] = st
+        if r.get("Referee"):
+            m["referee"] = r["Referee"].strip()
         for pre in ("BFEC", "AvgC", "PSC", "B365C"):
             o = [fnum(r.get(pre + x)) for x in "HDA"]
             if all(v > 1 for v in o):

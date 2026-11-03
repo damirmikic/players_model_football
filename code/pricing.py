@@ -650,6 +650,190 @@ def rho_profile(matches, ratings, grid=np.arange(-0.2, 0.11, 0.02)):
     return max(ll, key=ll.get), ll
 
 
+# 8. MATCH STATISTICS (shots, shots on target, fouls, corners, yellow cards) --------------
+# Per-team count means from a penalized Poisson GLM with team ratings + match covariates (fit_count_ratings);
+# joint (home, away) distribution = NB total x Beta-Binomial home share (stat_joint). With c = 0 the split is
+# binomial, which is exactly the shared-gamma frailty model (positive H/A correlation); c > 0 adds split noise
+# and makes H/A negatively correlated at fixed total (shots, corners: the trailing team pushes).
+
+def fit_count_ratings(matches, asof=None, current_teams=None, ridge=5.0, half_life_days=180,
+                      prev_season_weight=0.7, use_teams=True):
+    """Penalized weighted Poisson GLM for a per-team match count (Poisson quasi-likelihood: consistent for the
+    mean under overdispersion; dispersion is fitted separately, see fit_stat_dispersion).
+    matches: [{home, away, yh, ya, date, season (1 current / 0 earlier), xh: [..], xa: [..]}]
+        log mu_home = mu + H + att[home] + dfn[away] + xh . beta
+        log mu_away = mu     + att[away] + dfn[home] + xa . beta
+    att = team's tendency to produce the stat, dfn = opponent's tendency to allow / provoke it. Covariates are
+    not penalized; ratings get ridge*(att^2 + dfn^2), so thin data falls back to the covariate-only prediction.
+    use_teams=False fits mu, H and beta only (ablation). Returns {mu, H, beta, att, dfn}, ratings centred on
+    current_teams."""
+    from scipy.optimize import minimize
+    rows = [m for m in matches if m.get("yh") is not None]
+    dates = [m["date"] if isinstance(m["date"], _dt.date) else _dt.date.fromisoformat(m["date"]) for m in rows]
+    asof = asof or max(dates)
+    current_teams = list(current_teams or sorted({m["home"] for m in rows if m.get("season", 1) == 1} |
+                                                 {m["away"] for m in rows if m.get("season", 1) == 1}, key=str))
+    teams = sorted({m["home"] for m in rows} | {m["away"] for m in rows} | set(current_teams), key=str)
+    ix = {t: i for i, t in enumerate(teams)}
+    n, nt = len(teams), (len(teams) if use_teams else 0)
+    hi = np.array([ix[m["home"]] for m in rows]); ai = np.array([ix[m["away"]] for m in rows])
+    yh = np.array([m["yh"] for m in rows], float); ya = np.array([m["ya"] for m in rows], float)
+    Xh = np.array([m.get("xh", []) for m in rows], float).reshape(len(rows), -1)
+    Xa = np.array([m.get("xa", []) for m in rows], float).reshape(len(rows), -1)
+    p = Xh.shape[1]
+    xi = math.log(2) / half_life_days
+    w = np.array([math.exp(-xi * max((asof - d).days, 0)) * (1.0 if m.get("season", 1) == 1 else prev_season_weight)
+                  for m, d in zip(rows, dates)])
+    # parameter vector: [mu, H, beta(p), att(nt), dfn(nt)]
+    def unpack(x):
+        att = x[2 + p:2 + p + nt] if nt else np.zeros(n)
+        dfn = x[2 + p + nt:] if nt else np.zeros(n)
+        return x[0], x[1], x[2:2 + p], att, dfn
+
+    def nll(x):
+        mu, H, b, att, dfn = unpack(x)
+        lh = np.exp(mu + H + att[hi] + dfn[ai] + Xh @ b); la = np.exp(mu + att[ai] + dfn[hi] + Xa @ b)
+        ll = np.sum(w * (yh * np.log(lh) - lh + ya * np.log(la) - la))
+        rh, ra = w * (yh - lh), w * (ya - la)
+        g = np.zeros_like(x)
+        g[0] = rh.sum() + ra.sum(); g[1] = rh.sum(); g[2:2 + p] = Xh.T @ rh + Xa.T @ ra
+        pen = 0.0
+        if nt:
+            pen = ridge * (np.sum(att ** 2) + np.sum(dfn ** 2))
+            g[2 + p:2 + p + nt] = np.bincount(hi, rh, n) + np.bincount(ai, ra, n) - 2 * ridge * att
+            g[2 + p + nt:] = np.bincount(ai, rh, n) + np.bincount(hi, ra, n) - 2 * ridge * dfn
+        return -(ll - pen), -g
+
+    x0 = np.zeros(2 + p + 2 * nt); x0[0] = math.log(max(np.average(np.r_[yh, ya], weights=np.r_[w, w]), 0.05))
+    res = minimize(nll, x0, jac=True, method="L-BFGS-B")
+    mu, H, b, att, dfn = unpack(res.x)
+    ca = float(np.mean([att[ix[t]] for t in current_teams])); cd = float(np.mean([dfn[ix[t]] for t in current_teams]))
+    return {"mu": float(mu + ca + cd), "H": float(H), "beta": [float(v) for v in b],
+            "att": {t: float(att[ix[t]] - ca) for t in current_teams},
+            "dfn": {t: float(dfn[ix[t]] - cd) for t in current_teams}, "converged": bool(res.success)}
+
+
+def stat_covariates(lh, la, t0=math.log(2.7)):
+    """Match covariates for the count GLM from the goals model's lambdas:
+    z = log(lh/la) (supremacy, enters + for home / - for away), t = log(lh+la) - t0 (expected openness)."""
+    z, t = math.log(lh / la), math.log(lh + la) - t0
+    return [z, t], [-z, t]
+
+
+def count_means(r, home, away, xh, xa):
+    """(mu_home, mu_away) of a stat from fit_count_ratings output."""
+    bh = sum(b * x for b, x in zip(r["beta"], xh)); ba = sum(b * x for b, x in zip(r["beta"], xa))
+    return (math.exp(r["mu"] + r["H"] + r["att"].get(home, 0.0) + r["dfn"].get(away, 0.0) + bh),
+            math.exp(r["mu"] + r["att"].get(away, 0.0) + r["dfn"].get(home, 0.0) + ba))
+
+
+def nb_pmf_vec(mu, k, n):
+    """NB2 pmf P(Y=0..n), mean mu, Var = mu + mu^2/k (k >= 1e6 or None -> Poisson). Not renormalised."""
+    out = np.zeros(n + 1)
+    if not k or k >= 1e6:
+        lp = -mu
+        for y in range(n + 1):
+            out[y] = math.exp(lp)
+            lp += math.log(mu) - math.log(y + 1)
+        return out
+    q = mu / (k + mu)
+    lp = k * math.log(k / (k + mu))
+    for y in range(n + 1):
+        out[y] = math.exp(lp)
+        lp += math.log((y + k) / (y + 1) * q)
+    return out
+
+
+def betabinom_row(t, p, c):
+    """Beta-Binomial(t, a=p/c, b=(1-p)/c) pmf over y = 0..t (c = 0 -> Binomial(t, p)).
+    c = 1/(a+b) is the split overdispersion: Var = t p (1-p) (1 + (t-1) c/(1+c))."""
+    out = np.zeros(t + 1)
+    if c <= 1e-9:
+        lq, lr = math.log(1 - p), math.log(p) - math.log(1 - p)
+        lp = t * lq
+        for y in range(t + 1):
+            out[y] = math.exp(lp)
+            if y < t:
+                lp += math.log((t - y) / (y + 1)) + lr
+        return out
+    a, b = p / c, (1 - p) / c
+    lp = math.lgamma(t + b) + math.lgamma(a + b) - math.lgamma(t + a + b) - math.lgamma(b)
+    for y in range(t + 1):
+        out[y] = math.exp(lp)
+        if y < t:
+            lp += math.log((t - y) / (y + 1) * (y + a) / (t - y - 1 + b))
+    return out
+
+
+def stat_nmax(mh, ma, k):
+    mt = mh + ma
+    sd = math.sqrt(mt + (mt * mt / k if k and k < 1e6 else 0))
+    return int(math.ceil(mt + 8 * sd + 5))
+
+
+def stat_joint(mh, ma, k, c, nmax=None):
+    """Joint P[y_home, y_away] (numpy (nmax+1)^2, zero where y_home + y_away > nmax):
+    total T ~ NB(mh+ma, k), home | T ~ BetaBinomial(T, mh/(mh+ma), c). Marginal means are exactly mh, ma."""
+    nmax = nmax or stat_nmax(mh, ma, k)
+    pt = nb_pmf_vec(mh + ma, k, nmax); pt /= pt.sum()
+    p = mh / (mh + ma)
+    J = np.zeros((nmax + 1, nmax + 1))
+    for t in range(nmax + 1):
+        if pt[t] < 1e-15:
+            continue
+        row = betabinom_row(t, p, c)
+        for y in range(t + 1):
+            J[y, t - y] += pt[t] * row[y]
+    return J
+
+
+def stat_loglik(yh, ya, mh, ma, k, c):
+    """log P(yh, ya) under stat_joint, split into (total part, share part) - they separate, so k and c are
+    fitted independently (fit_stat_dispersion)."""
+    t = int(yh + ya)
+    mt = mh + ma
+    if not k or k >= 1e6:
+        lt = -mt + t * math.log(mt) - math.lgamma(t + 1)
+    else:
+        lt = (math.lgamma(t + k) - math.lgamma(k) - math.lgamma(t + 1)
+              + k * math.log(k / (k + mt)) + t * math.log(mt / (k + mt)))
+    p = mh / mt
+    ls = math.lgamma(t + 1) - math.lgamma(yh + 1) - math.lgamma(ya + 1)
+    if c <= 1e-9:
+        ls += yh * math.log(p) + ya * math.log(1 - p)
+    else:
+        a, b = p / c, (1 - p) / c
+        ls += (math.lgamma(yh + a) + math.lgamma(ya + b) - math.lgamma(t + a + b)
+               - math.lgamma(a) - math.lgamma(b) + math.lgamma(a + b))
+    return lt, ls
+
+
+def fit_stat_dispersion(obs):
+    """ML (k, c) from [(yh, ya, mh, ma)] (out-of-sample means). k in [2, 1e6] (1e6 = Poisson), c in [0, 0.5]."""
+    from scipy.optimize import minimize_scalar
+    ft = lambda lk: -sum(stat_loglik(yh, ya, mh, ma, math.exp(lk), 0.0)[0] for yh, ya, mh, ma in obs)
+    fs = lambda c: -sum(stat_loglik(yh, ya, mh, ma, None, c)[1] for yh, ya, mh, ma in obs)
+    rk = minimize_scalar(ft, bounds=(math.log(2), math.log(1e6)), method="bounded", options={"xatol": 1e-3})
+    rc = minimize_scalar(fs, bounds=(0.0, 0.5), method="bounded", options={"xatol": 1e-5})
+    k = math.exp(rk.x)
+    return {"k": round(k, 2) if k < 0.99e6 else 1e6, "c": round(float(rc.x), 5) if rc.x > 1e-4 else 0.0}
+
+
+def stat_markets(mh, ma, k, c, lines_total=None, lines_team=None, lines_hcp=None):
+    """Fair prices for one stat: match totals, team totals, handicap (home line), most-X 1X2."""
+    J = stat_joint(mh, ma, k, c)
+    tot, diff = total_dist(J), gd_dist(J)
+    dh = dict(enumerate(J.sum(axis=1))); da = dict(enumerate(J.sum(axis=0)))
+    ctr = lambda m: math.floor(m) + 0.5
+    lines_total = lines_total or [ctr(mh + ma) + d for d in (-2, -1, 0, 1, 2)]
+    out = {"mean": (mh, ma), "1X2": (float(np.tril(J, -1).sum()), float(np.trace(J)), float(np.triu(J, 1).sum())),
+           "totals": {ln: fair_odds_from_dist(tot, -ln)[1] for ln in lines_total},
+           "home_totals": {ln: fair_odds_from_dist(dh, -ln)[1] for ln in (lines_team or [ctr(mh) + d for d in (-1, 0, 1)])},
+           "away_totals": {ln: fair_odds_from_dist(da, -ln)[1] for ln in (lines_team or [ctr(ma) + d for d in (-1, 0, 1)])},
+           "handicap_home": {ln: fair_odds_from_dist(diff, ln)[0] for ln in (lines_hcp or [-2.5, -1.5, -0.5, 0.5, 1.5])}}
+    return out
+
+
 def standings(matches, deductions=None):
     """League table from played matches: points, then goal difference, then goals scored."""
     t = {}
