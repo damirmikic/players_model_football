@@ -59,14 +59,15 @@ The pipeline ingests match results, shot/player xG data, closing market odds, an
 │   ├── fit_lineup.py        # Fits centered injury (beta_inj) and rotation (beta_rot) elasticities
 │   ├── fit_betas.py         # Fits raw lineup elasticities (beta_a, beta_d)
 │   ├── fit_market.py        # Log-pooling blend experiment with opening market odds
-│   └── fit_elo.py           # Tests orthogonalized Elo & rest-day adjustments
+│   ├── fit_elo.py           # Tests orthogonalized Elo & rest-day adjustments
+│   └── serve.py             # Local web server with live FotMob lineup refresh endpoint
 ├── web/                     # Frontend calculator source
 │   ├── app.html             # Single-page calculator UI template
 │   ├── pricing.js           # Browser port of the pricing engine
 │   └── test_parity.js       # Node check verifying numerical parity between pricing.py & pricing.js
 ├── raw/                     # Cached raw data per league & season (Understat, odds CSVs, FotMob)
 ├── out/                     # Per-league backtest summaries, lineup factors, and tuning grids
-└── build/                   # Generated data_<league>.json and standalone kalkulator_<league>.html
+└── build/                   # Generated index.html (all leagues), data_<league>.json, and kalkulator_<league>.html
 ```
 
 ---
@@ -102,15 +103,23 @@ python run.py --lineups
 python run.py --lineups EPL
 ```
 
-### 3. Open the Calculator
+### 3. Open or Serve the Web App
 
-After running the pipeline, open any generated standalone HTML file in `build/` directly in your browser (no web server required):
+After running the pipeline, you have three ways to use the web app:
 
-- `build/kalkulator_EPL.html`
-- `build/kalkulator_La_liga.html`
-- `build/kalkulator_Bundesliga.html`
-- `build/kalkulator_Serie_A.html`
-- `build/kalkulator_Ligue_1.html`
+1. **Unified Multi-League Web App (Offline / Static):**
+   Open `build/index.html` directly in your browser (all 5 leagues bundled into one app with instant league switching via tabs or URL hashes like `#EPL`, `#La_liga`), or open individual league files (`build/kalkulator_<league>.html`).
+2. **Local Web Server with Live Refresh (`serve.py`):**
+   ```bash
+   cd code
+   python serve.py 8000
+   ```
+   Opens `http://127.0.0.1:8000` where clicking **↻ Osveži postave** runs `lineups.py` + `export.py` on demand and updates lineups in the browser without reloading.
+3. **Static Hosting (Netlify / Cloudflare Pages / Firebase):**
+   Deploy the pre-built `build/` folder directly (`netlify.toml` is preconfigured to publish `build/` with zero cloud build minutes):
+   ```bash
+   npx netlify-cli deploy --prod --dir=build
+   ```
 
 Each calculator allows interactive inspection and override of:
 - Upcoming fixtures (with predicted or confirmed lineups from FotMob) or custom head-to-head matchups
@@ -131,7 +140,8 @@ If you want to run individual stages manually from `code/`:
 | `python player_model.py [LEAGUE]` | Computes historical player ratings and writes `../out/<league>/lineup_factors.json`. |
 | `python backtest.py [LEAGUE]` | Runs walk-forward evaluation (`2025-26` and `2026-27`) and writes `../out/<league>/backtest.json`. |
 | `TODAY=YYYY-MM-DD python export.py [LEAGUE]` | Fits ratings strictly before `TODAY` and writes `../build/data_<league>.json`. |
-| `python build.py` | Inlines `web/pricing.js` and `build/data_<league>.json` into `build/kalkulator_<league>.html`. |
+| `python build.py` | Bundles `web/pricing.js` and `build/data_<league>.json` into `build/index.html` and `build/kalkulator_<league>.html`. |
+| `python serve.py [PORT]` | Serves `build/` locally and enables the in-browser **↻ Osveži postave** button. |
 
 ---
 

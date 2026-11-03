@@ -118,14 +118,19 @@ details.bench .chips{margin-top:6px}
 .notes dt{color:var(--muted)}.notes dd{margin:0;font-family:var(--f-mono)}
 .notes ul{padding-left:18px;margin:6px 0;display:flex;flex-direction:column;gap:5px}
 .btn{font:inherit;font-size:12.5px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:4px;padding:4px 9px;cursor:pointer}
+.btn:disabled{opacity:.55;cursor:wait}
+.lg-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.lg-tab{font:inherit;font-family:var(--f-display);font-size:15px;font-weight:600;letter-spacing:.02em;border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:4px;padding:4px 11px;cursor:pointer}
+.lg-tab[aria-pressed="true"]{color:var(--ink);border-color:var(--accent);box-shadow:inset 0 -3px 0 var(--accent)}
 @media (max-width:560px){.side .tn{font-size:24px}.xg{font-size:22px}.lam{grid-template-columns:1fr}}
-@media (prefers-reduced-motion:no-preference){.chip,.fx{transition:background .12s,border-color .12s}}
+@media (prefers-reduced-motion:no-preference){.chip,.fx,.lg-tab{transition:background .12s,border-color .12s}}
 </style>
 
 <div class="wrap">
   <header class="top">
     <div>
       <h1>Kalkulator kvota · <span id="lgname"></span></h1>
+      <nav class="lg-tabs" id="lgTabs" aria-label="Lige"></nav>
       <p id="asof"></p>
     </div>
     <div class="settings" aria-label="Podešavanja margine">
@@ -147,6 +152,7 @@ details.bench .chips{margin-top:6px}
       <label for="selA" class="muted">gost</label><select id="selA"></select>
       <label for="luSrc" class="muted">postava</label><select id="luSrc"></select>
       <button class="btn" id="resetLu" type="button">Vrati postave</button>
+      <button class="btn" id="refreshLu" type="button" title="Osveži postave i povrede">↻ Osveži postave</button>
     </div>
   </section>
 
@@ -189,9 +195,10 @@ details.bench .chips{margin-top:6px}
 
 <script>/*__PRICING__*/</script>
 <script>
-const D = /*__DATA__*/;
+const RAW_DATA = /*__DATA__*/;
+const ALL_DATA = RAW_DATA.__bundle__ ? RAW_DATA.data : {[RAW_DATA.league_key]: RAW_DATA};
 const $ = id => document.getElementById(id);
-const T = D.teams, codes = Object.keys(T).sort((a, b) => T[a].name.localeCompare(T[b].name));
+let D, T, codes;
 const POS = ["GK", "DEF", "MID", "FWD"], POSN = {GK: "GK", DEF: "ODB", MID: "VEZ", FWD: "NAP"};
 const fmt = (x, d = 2) => Number.isFinite(x) ? x.toFixed(d) : "–";
 const pct = x => (100 * x).toFixed(1) + "%";
@@ -426,17 +433,75 @@ function update() {
   renderMatch(L); renderLineup($("luH"), st.h, L.xh); renderLineup($("luA"), st.a, L.xa); renderBoard(L);
 }
 
-$("lgname").textContent = D.league; document.title = `Kalkulator kvota · ${D.league}`;
-$("league").innerHTML = D.leagues.map(l => `<option value="${l.key}"${l.key === D.league_key ? " selected" : ""}>${l.name}</option>`).join("");
-$("league").addEventListener("change", e => { location.href = `kalkulator_${e.target.value}.html`; });
-$("asof").textContent = `Stanje ${D.asof.split("-").reverse().join(".")}. ${D.data_note}`;
-$("betaInj").value = D.beta_inj ?? D.beta_a; $("beta").value = D.beta_rot ?? D.beta_a; $("rho").value = D.rho;
+async function setLeague(key, keepMatch = false) {
+  if (!ALL_DATA[key]) {
+    try {
+      const r = await fetch(`data_${key}.json?t=${Date.now()}`);
+      if (r.ok) ALL_DATA[key] = await r.json();
+    } catch (_) {}
+  }
+  if (!ALL_DATA[key]) { location.href = `kalkulator_${key}.html`; return; }
+  const prevH = st.h, prevA = st.a;
+  D = ALL_DATA[key];
+  T = D.teams;
+  codes = Object.keys(T).sort((a, b) => T[a].name.localeCompare(T[b].name));
+  st = {h: null, a: null, lu: {}, adj: {}, fx: null, src: "model"};
+  $("lgname").textContent = D.league;
+  document.title = `Kalkulator kvota · ${D.league}`;
+  $("league").innerHTML = D.leagues.map(l => `<option value="${l.key}"${l.key === D.league_key ? " selected" : ""}>${l.name}</option>`).join("");
+  $("lgTabs").innerHTML = D.leagues.map(l => `<button type="button" class="lg-tab" data-k="${l.key}" aria-pressed="${l.key === D.league_key}">${l.name}</button>`).join("");
+  $("lgTabs").querySelectorAll(".lg-tab").forEach(b => b.addEventListener("click", () => setLeague(b.dataset.k)));
+  $("asof").textContent = `Stanje ${D.asof.split("-").reverse().join(".")}. ${D.data_note}`;
+  $("betaInj").value = D.beta_inj ?? D.beta_a; $("beta").value = D.beta_rot ?? D.beta_a; $("rho").value = D.rho;
+  if (RAW_DATA.__bundle__ && location.hash.slice(1) !== key) history.replaceState(null, "", `#${key}`);
+  renderFixtures(); renderRatings();
+  if (keepMatch && prevH && prevA && T[prevH] && T[prevA]) {
+    pick(String(prevH), String(prevA));
+  } else {
+    const big = D.fixtures[0] || {h: codes[0], a: codes[1]};
+    pick(String(big.h), String(big.a));
+  }
+}
+
+async function refreshLineups() {
+  const btn = $("refreshLu"), key = D.league_key, orig = btn.textContent;
+  btn.disabled = true; btn.textContent = "↻ Osvežavam…";
+  try {
+    let fresh = null;
+    try {
+      const r = await fetch(`/api/refresh?league=${encodeURIComponent(key)}`, {method: "POST"});
+      if (r.ok) fresh = await r.json();
+    } catch (_) {}
+    if (!fresh) {
+      const r = await fetch(`data_${key}.json?t=${Date.now()}`);
+      if (r.ok) fresh = await r.json();
+    }
+    if (fresh && fresh.teams) {
+      ALL_DATA[key] = fresh;
+      await setLeague(key, true);
+      btn.textContent = "✓ Osveženo";
+      setTimeout(() => { btn.textContent = orig; }, 1800);
+    } else {
+      throw new Error("No data");
+    }
+  } catch (_) {
+    btn.textContent = "Samo lokalno (serve.py)";
+    setTimeout(() => { btn.textContent = orig; }, 2500);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+$("league").addEventListener("change", e => setLeague(e.target.value));
 ["m1x2", "m2w", "mmw", "betaInj", "beta", "rho"].forEach(id => $(id).addEventListener("input", update));
 $("selH").addEventListener("change", e => pick(e.target.value, st.a));
 $("selA").addEventListener("change", e => pick(st.h, e.target.value));
 $("luSrc").addEventListener("change", e => { st.src = e.target.value; delete st.lu[st.h]; delete st.lu[st.a]; update(); });
 $("resetLu").addEventListener("click", () => { delete st.lu[st.h]; delete st.lu[st.a]; delete st.adj[st.h]; delete st.adj[st.a]; update(); });
-renderFixtures(); renderRatings();
-const big = D.fixtures[0] || {h: codes[0], a: codes[1]};
-pick(String(big.h), String(big.a));
+$("refreshLu").addEventListener("click", refreshLineups);
+window.addEventListener("hashchange", () => { const k = location.hash.slice(1); if (k && (!D || k !== D.league_key)) setLeague(k); });
+
+const initKey = (location.hash.slice(1) && ALL_DATA[location.hash.slice(1)]) ? location.hash.slice(1)
+  : (RAW_DATA.__bundle__ ? RAW_DATA.default : RAW_DATA.league_key);
+setLeague(initKey);
 </script>

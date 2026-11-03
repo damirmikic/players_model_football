@@ -1,0 +1,9 @@
+[build]
+  publish = "build"
+  command = "echo 'Using prebuilt static files in build/'"
+
+[[headers]]
+  for = "/data_*.json"
+  [headers.values]
+    Cache-Control = "public, max-age=60, must-revalidate"
+
