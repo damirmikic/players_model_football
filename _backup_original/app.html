@@ -1,0 +1,393 @@
+<title>Kalkulator kvota EPL</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: trader desk. Match bar on top, lineups left (inputs), price board right (outputs), ratings + validation below. */
+:root{
+  --bg:#f3f5f4; --panel:#ffffff; --ink:#15201d; --muted:#5c6b66; --line:#d9e0dd; --soft:#e9eeec;
+  --accent:#7a1838; --accent-soft:#f3e3e8; --good:#1f7a4d; --bad:#b0362b; --warn:#a86a00;
+  --f-display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#101614; --panel:#17201d; --ink:#e4ebe8; --muted:#93a29c; --line:#2a3632; --soft:#1f2a26;
+  --accent:#e0718f; --accent-soft:#3a1d27; --good:#5cc08d; --bad:#ec7b6f; --warn:#e0a640; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101614; --panel:#17201d; --ink:#e4ebe8; --muted:#93a29c; --line:#2a3632; --soft:#1f2a26;
+  --accent:#e0718f; --accent-soft:#3a1d27; --good:#5cc08d; --bad:#ec7b6f; --warn:#e0a640; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.45}
+.wrap{max-width:1360px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;letter-spacing:.01em;margin:0;text-wrap:balance}
+h1{font-size:30px;line-height:1}
+h2{font-size:21px}
+h3{font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.mono,.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 24px}
+.top p{margin:4px 0 0;color:var(--muted);font-size:13px;max-width:70ch}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px 16px;min-width:0}
+/* fixtures strip */
+.fx-wrap{display:flex;flex-direction:column;gap:8px}
+.fx-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.fx{flex:0 0 auto;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:4px;padding:6px 10px;cursor:pointer;font:inherit;text-align:left;display:flex;flex-direction:column;gap:1px}
+.fx small{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.fx b{font-family:var(--f-display);font-size:17px;font-weight:600;letter-spacing:.02em}
+.fx[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 -3px 0 var(--accent)}
+.fx:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.custom{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px}
+select,input[type=number]{font:inherit;font-family:var(--f-mono);background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:4px 6px}
+input[type=number]{width:70px}
+/* match header */
+.match{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center}
+.side{display:flex;flex-direction:column;gap:2px;min-width:0}
+.side.away{text-align:right;align-items:flex-end}
+.side .tn{font-family:var(--f-display);font-size:34px;font-weight:700;line-height:1;letter-spacing:.01em}
+.side .meta{font-size:12px;color:var(--muted)}
+.xg{font-family:var(--f-mono);font-size:30px;font-weight:600;text-align:center;line-height:1}
+.xg small{display:block;font-size:11px;color:var(--muted);font-weight:400;font-family:var(--f-body);letter-spacing:.04em;margin-top:4px}
+.lam{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 24px;margin-top:14px;font-size:12.5px}
+.lam table{width:100%;border-collapse:collapse}
+.lam td{padding:2px 0}.lam td:last-child{text-align:right;font-family:var(--f-mono)}
+.lam tr.tot td{border-top:1px solid var(--line);font-weight:600;padding-top:4px}
+.adj{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:12.5px}
+/* main grid */
+.main{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:18px;align-items:start}
+@media (max-width:980px){.main{grid-template-columns:1fr}}
+.lineups{display:flex;flex-direction:column;gap:14px}
+.lu-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px}
+.lu-head .ratio{font-family:var(--f-mono);font-size:13px}
+.ratio.up{color:var(--good)}.ratio.down{color:var(--bad)}
+.posrow{display:grid;grid-template-columns:38px 1fr;gap:8px;align-items:start;padding:5px 0;border-top:1px dashed var(--line)}
+.posrow:first-of-type{border-top:0}
+.posrow>span{font-family:var(--f-mono);font-size:11px;color:var(--muted);padding-top:5px}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{font:inherit;font-size:12.5px;border:1px solid var(--line);background:var(--soft);color:var(--ink);border-radius:3px;padding:3px 7px;cursor:pointer;display:inline-flex;gap:6px;align-items:baseline}
+.chip i{font-style:normal;font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.chip.xi{background:var(--panel);border-color:var(--ink)}
+.chip.sub{border-color:var(--accent);background:var(--accent-soft)}
+.chip.out{text-decoration:line-through;color:var(--muted);background:transparent;border-style:dashed}
+.chip .flag{width:7px;height:7px;border-radius:50%;background:var(--bad);align-self:center}
+.chip .flag.d{background:var(--warn)}
+details.bench{margin-top:8px;font-size:12.5px}
+details.bench summary{cursor:pointer;color:var(--muted)}
+details.bench .chips{margin-top:6px}
+.hint{font-size:12px;color:var(--muted);margin:6px 0 0}
+/* price board */
+.board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:640px){.board{grid-template-columns:1fr}}
+.mk{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:10px 12px;min-width:0}
+.mk.wide{grid-column:1/-1}
+.mk-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px}
+.mk-h h2{font-size:17px}
+.or{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.mk table{width:100%;border-collapse:collapse;font-size:13px}
+.mk th{font-weight:500;font-size:11px;color:var(--muted);text-align:right;padding:2px 4px;text-transform:uppercase;letter-spacing:.05em}
+.mk th:first-child{text-align:left}
+.mk td{padding:3px 4px;text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums;border-top:1px solid var(--soft)}
+.mk td:first-child{text-align:left;font-family:var(--f-body)}
+.mk td.px{font-weight:600;color:var(--accent)}
+.mk tr.main-line td{background:var(--accent-soft)}
+.scroll{overflow-x:auto}
+.cs{display:grid;grid-template-columns:28px repeat(6,minmax(44px,1fr));gap:2px;font-family:var(--f-mono);font-size:12px;min-width:330px}
+.cs div{padding:4px 2px;text-align:center;border-radius:2px}
+.cs .hd{color:var(--muted);font-size:11px}
+.cs .c{background:var(--soft)}
+.cs .c b{display:block;font-weight:600}
+.cs .c small{color:var(--muted);font-size:10px}
+/* settings */
+.settings{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:12.5px}
+.settings label{display:flex;gap:6px;align-items:center}
+/* lower */
+.lower{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:18px;align-items:start}
+@media (max-width:980px){.lower{grid-template-columns:1fr}}
+.rt table{width:100%;border-collapse:collapse;font-size:13px}
+.rt th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:500;text-align:right;padding:4px 6px;border-bottom:1px solid var(--line)}
+.rt th:nth-child(2),.rt td:nth-child(2){text-align:left}
+.rt td{padding:4px 6px;text-align:right;font-family:var(--f-mono);border-bottom:1px solid var(--soft)}
+.rt td:nth-child(2){font-family:var(--f-body)}
+.bar{display:inline-block;height:6px;border-radius:1px;vertical-align:middle;background:var(--muted)}
+.notes{font-size:13px}
+.notes dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:8px 0 12px}
+.notes dt{color:var(--muted)}.notes dd{margin:0;font-family:var(--f-mono)}
+.notes ul{padding-left:18px;margin:6px 0;display:flex;flex-direction:column;gap:5px}
+.btn{font:inherit;font-size:12.5px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:4px;padding:4px 9px;cursor:pointer}
+@media (max-width:560px){.side .tn{font-size:24px}.xg{font-size:22px}.lam{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){.chip,.fx{transition:background .12s,border-color .12s}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Kalkulator kvota · Premier League</h1>
+      <p id="asof"></p>
+    </div>
+    <div class="settings" aria-label="Podešavanja margine">
+      <label for="m1x2">1X2 %<input id="m1x2" type="number" step="0.5" min="0" max="20" value="6"></label>
+      <label for="m2w">Dva ishoda %<input id="m2w" type="number" step="0.5" min="0" max="15" value="4.5"></label>
+      <label for="mmw">Tačan rez. / PV-KR %<input id="mmw" type="number" step="1" min="0" max="60" value="28"></label>
+      <label for="beta">β postave<input id="beta" type="number" step="0.05" min="0" max="1.5"></label>
+      <label for="rho">ρ<input id="rho" type="number" step="0.01" min="-0.3" max="0.2"></label>
+    </div>
+  </header>
+
+  <section class="fx-wrap" aria-label="Mečevi">
+    <div class="fx-row" id="fx"></div>
+    <div class="custom">
+      <span class="muted">Bilo koji par:</span>
+      <label for="selH" class="muted">domaćin</label><select id="selH"></select>
+      <label for="selA" class="muted">gost</label><select id="selA"></select>
+      <button class="btn" id="resetLu" type="button">Vrati postave</button>
+    </div>
+  </section>
+
+  <section class="panel" aria-label="Meč">
+    <div class="match">
+      <div class="side"><span class="tn" id="hName"></span><span class="meta" id="hMeta"></span></div>
+      <div class="xg"><span id="xgLine"></span><small>očekivani golovi (λ)</small></div>
+      <div class="side away"><span class="tn" id="aName"></span><span class="meta" id="aMeta"></span></div>
+    </div>
+    <div class="lam" id="lam"></div>
+  </section>
+
+  <div class="main">
+    <section class="lineups" aria-label="Postave">
+      <div class="panel" id="luH"></div>
+      <div class="panel" id="luA"></div>
+      <p class="hint">Klik na igrača u postavi ga isključuje (zamena je najbolji raspoloživi igrač iste pozicije). Klik na igrača sa klupe ga ubacuje umesto najslabije opcije iste pozicije. Broj uz ime je napadački doprinos: xG + xA na 90 minuta, sa shrinkage-om ka proseku pozicije. Crvena tačka: povreda ili suspenzija po poslednjem FPL snimku.</p>
+    </section>
+    <section class="board" id="board" aria-label="Kvote"></section>
+  </div>
+
+  <div class="lower">
+    <section class="panel rt" aria-label="Rejtinzi timova">
+      <div class="mk-h"><h2>Rejtinzi timova</h2><span class="or">golovi na neutralnom terenu protiv prosečnog tima</span></div>
+      <div class="scroll"><table id="rtab"></table></div>
+    </section>
+    <section class="panel notes" aria-label="Model">
+      <h2>Model i provera</h2>
+      <dl id="bt"></dl>
+      <ul>
+        <li>Timovi: penalizovana Poisson regresija (napad, odbrana, prednost domaćeg) na cilju 50% golovi + 50% xG, vremensko opadanje sa poluživotom 365 dana, prošle sezone sa težinom 0.8.</li>
+        <li>Igrači: napadački doprinos na 90 minuta. Kada se postava razlikuje od uobičajene, λ tima se množi sa (zbir postave / zbir uobičajene postave)<sup>β</sup>.</li>
+        <li>Defanzivni rejting igrača (on/off xGA) nije pokazao merljiv efekat na rezultate, pa ne ulazi u cenu. Za odsustvo golmana ili štopera koristite ručnu korekciju protivnikovog λ.</li>
+        <li>Sva tržišta se izvode iz jedne Dixon-Coles matrice rezultata. Margina je power metod, cene se zaokružuju naniže na ladder. Dupla šansa se računa iz već maržiranih cena 1X2.</li>
+        <li>Model ne vidi motivaciju, raspored utakmica u Evropi ni vremenske uslove. Pre objave uporedite sa sharp linijom.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+<script>/*__PRICING__*/</script>
+<script>
+const D = /*__DATA__*/;
+const $ = id => document.getElementById(id);
+const T = D.teams, codes = Object.keys(T).sort((a, b) => T[a].name.localeCompare(T[b].name));
+const POS = ["GK", "DEF", "MID", "FWD"], POSN = {GK: "GK", DEF: "ODB", MID: "VEZ", FWD: "NAP"};
+const fmt = (x, d = 2) => Number.isFinite(x) ? x.toFixed(d) : "–";
+const pct = x => (100 * x).toFixed(1) + "%";
+let st = {h: null, a: null, lu: {}, adj: {}};
+
+function luState(c) {
+  if (!st.lu[c]) st.lu[c] = {out: new Set(T[c].players.filter(p => p.st === "i" || p.st === "s").map(p => p.id)), forced: new Set()};
+  return st.lu[c];
+}
+// XI = habitual XI minus outs, forced-in players first take vacancies, then best bench by recent starts
+function computeXI(c) {
+  const t = T[c], L = luState(c), byId = Object.fromEntries(t.players.map(p => [p.id, p]));
+  const base = t.players.filter(p => p.xi);
+  let xi = base.filter(p => !L.out.has(p.id));
+  const vac = base.filter(p => L.out.has(p.id)).map(p => p.pos);
+  const avail = p => !L.out.has(p.id) && !xi.includes(p);
+  for (const id of L.forced) {
+    const p = byId[id]; if (!p || xi.includes(p) || L.out.has(id)) continue;
+    const vi = vac.indexOf(p.pos) >= 0 ? vac.indexOf(p.pos) : (p.pos !== "GK" ? vac.findIndex(v => v !== "GK") : -1);
+    if (vi >= 0) { vac.splice(vi, 1); xi.push(p); continue; }
+    const cand = xi.filter(q => !L.forced.has(q.id) && (q.pos === p.pos)).sort((a, b) => a.rs - b.rs)[0]
+      || xi.filter(q => !L.forced.has(q.id) && q.pos !== "GK" && p.pos !== "GK").sort((a, b) => a.rs - b.rs)[0];
+    if (cand) { xi = xi.filter(q => q !== cand); xi.push(p); }
+  }
+  const subs = new Set();
+  for (const pos of vac) {
+    const pool = t.players.filter(avail).sort((a, b) => b.rs - a.rs || b.min - a.min);
+    const p = pool.find(q => q.pos === pos) || (pos !== "GK" && pool.find(q => q.pos !== "GK"));
+    if (p) { xi.push(p); subs.add(p.id); }
+  }
+  for (const id of L.forced) subs.add(id);
+  const sumC = a => a.reduce((s, p) => s + p.c, 0);
+  return {xi, subs, ratio: sumC(xi) / sumC(base)};
+}
+
+function lambdas() {
+  const h = T[st.h], a = T[st.a], beta = +$("beta").value;
+  const bh = Math.exp(D.mu + D.H + h.att + a.dfn), ba = Math.exp(D.mu + a.att + h.dfn);
+  const xh = computeXI(st.h), xa = computeXI(st.a);
+  const mh = 1 + (st.adj[st.h] || 0) / 100, ma = 1 + (st.adj[st.a] || 0) / 100;
+  return {bh, ba, xh, xa, fh: Math.pow(xh.ratio, beta), fa: Math.pow(xa.ratio, beta), mh, ma,
+          lh: bh * Math.pow(xh.ratio, beta) * mh, la: ba * Math.pow(xa.ratio, beta) * ma};
+}
+
+function renderMatch(L) {
+  const h = T[st.h], a = T[st.a];
+  $("hName").textContent = h.name; $("aName").textContent = a.name;
+  const meta = t => `${t.pos}. mesto · ${t.pts} bod. · ${t.gf}:${t.ga}${t.promoted ? " · novajlija" : ""}`;
+  $("hMeta").textContent = meta(h); $("aMeta").textContent = meta(a);
+  $("xgLine").textContent = `${fmt(L.lh)} – ${fmt(L.la)}`;
+  const blk = (c, nm, base, f, m, lam) => `<div><table>
+    <tr><td>${nm}: rejtinzi timova</td><td>${fmt(base, 3)}</td></tr>
+    <tr><td>× postava</td><td>${fmt(f, 3)}</td></tr>
+    <tr><td>× ručna korekcija</td><td>${fmt(m, 3)}</td></tr>
+    <tr class="tot"><td>λ ${nm}</td><td>${fmt(lam, 3)}</td></tr></table>
+    <div class="adj"><label for="adj-${c}">Ručno ±%</label><input id="adj-${c}" data-c="${c}" type="number" step="1" min="-40" max="40" value="${st.adj[c] || 0}"></div></div>`;
+  $("lam").innerHTML = blk(st.h, h.short, L.bh, L.fh, L.mh, L.lh) + blk(st.a, a.short, L.ba, L.fa, L.ma, L.la);
+  $("lam").querySelectorAll("input").forEach(i => i.addEventListener("change", e => { st.adj[e.target.dataset.c] = +e.target.value || 0; update(); }));
+}
+
+function renderLineup(el, c, X) {
+  const t = T[c], L = luState(c), inXI = new Set(X.xi.map(p => p.id));
+  const chip = p => {
+    const cls = L.out.has(p.id) ? "out" : X.subs.has(p.id) ? "sub" : inXI.has(p.id) ? "xi" : "";
+    const flag = (p.st === "i" || p.st === "s") ? '<span class="flag"></span>' : p.st === "d" ? '<span class="flag d"></span>' : "";
+    const tip = (p.news ? p.news + " · " : "") + `${p.n90} odigranih 90' u uzorku`;
+    return `<button type="button" class="chip ${cls}" data-c="${c}" data-id="${p.id}" title="${tip.replace(/"/g, "&quot;")}">${flag}${p.n}<i>${p.c.toFixed(2)}</i></button>`;
+  };
+  const rows = POS.map(pos => {
+    const ps = X.xi.filter(p => p.pos === pos).concat(t.players.filter(p => p.xi && p.pos === pos && L.out.has(p.id)));
+    return ps.length ? `<div class="posrow"><span>${POSN[pos]}</span><div class="chips">${ps.map(chip).join("")}</div></div>` : "";
+  }).join("");
+  const bench = t.players.filter(p => !inXI.has(p.id) && !(p.xi && L.out.has(p.id)));
+  const r = X.ratio, cls = r > 1.005 ? "up" : r < 0.995 ? "down" : "";
+  el.innerHTML = `<div class="lu-head"><h2>${t.name}</h2><span class="ratio ${cls}">napad postave ${pct(r)}</span></div>${rows}
+    <details class="bench"><summary>Ostatak tima (${bench.length})</summary><div class="chips">${bench.map(chip).join("")}</div></details>`;
+  el.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => toggle(b.dataset.c, +b.dataset.id, inXI)));
+}
+function toggle(c, id, inXI) {
+  const L = luState(c);
+  if (L.out.has(id)) L.out.delete(id);
+  else if (L.forced.has(id)) L.forced.delete(id);
+  else if (inXI.has(id)) L.out.add(id);
+  else L.forced.add(id);
+  const open = [...document.querySelectorAll("details.bench")].map(d => d.open);
+  update();
+  document.querySelectorAll("details.bench").forEach((d, i) => d.open = open[i]);
+}
+
+function market(title, rows, opts = {}) {
+  const fairOR = rows.reduce((s, r) => s + (r.prob || 0), 0);
+  const or = opts.noOR ? "" : `marža ${((rows.reduce((s, r) => s + 1 / r.px, 0) - 1) * 100).toFixed(1)}%`;
+  return `<div class="mk ${opts.wide ? "wide" : ""}"><div class="mk-h"><h2>${title}</h2><span class="or">${opts.note || or}</span></div>
+   <table><thead><tr><th>Ishod</th><th>Fer %</th><th>Fer</th><th>Kvota</th></tr></thead><tbody>
+   ${rows.map(r => `<tr${r.main ? ' class="main-line"' : ""}><td>${r.name}</td><td>${r.prob != null ? pct(r.prob) : "–"}</td><td>${fmt(r.fair)}</td><td class="px">${fmt(r.px)}</td></tr>`).join("")}
+   </tbody></table></div>`;
+}
+function pairTable(title, lines, note) {
+  return `<div class="mk"><div class="mk-h"><h2>${title}</h2><span class="or">${note}</span></div><table>
+   <thead><tr><th>Linija</th><th>${lines.hA}</th><th>Fer</th><th>${lines.hB}</th><th>Fer</th></tr></thead><tbody>
+   ${lines.rows.map(r => `<tr${r.main ? ' class="main-line"' : ""}><td>${r.label}</td><td class="px">${fmt(r.a)}</td><td>${fmt(r.fa)}</td><td class="px">${fmt(r.b)}</td><td>${fmt(r.fb)}</td></tr>`).join("")}
+   </tbody></table></div>`;
+}
+
+function renderBoard(L) {
+  const rho = +$("rho").value, m1 = +$("m1x2").value / 100, m2 = +$("m2w").value / 100, mm = +$("mmw").value / 100;
+  const M = PE.scoreMatrix(L.lh, L.la, rho), [ph, pd, pa] = PE.oneXTwo(M);
+  const T1 = PE.dist(M, (i, j) => i + j), G = PE.dist(M, (i, j) => i - j);
+  const hN = T[st.h].short, aN = T[st.a].short, lad = PE.ladder;
+  const p3 = PE.applyMargin([ph, pd, pa], m1).map(lad);
+  let html = market("Konačan ishod", [
+    {name: "1 · " + T[st.h].name, prob: ph, fair: 1 / ph, px: p3[0]},
+    {name: "X · nerešeno", prob: pd, fair: 1 / pd, px: p3[1]},
+    {name: "2 · " + T[st.a].name, prob: pa, fair: 1 / pa, px: p3[2]}]);
+  const dc = (x, y) => lad(1 / (1 / p3[x] + 1 / p3[y]));
+  html += market("Dupla šansa", [
+    {name: "1X", prob: ph + pd, fair: 1 / (ph + pd), px: dc(0, 1)},
+    {name: "12", prob: ph + pa, fair: 1 / (ph + pa), px: dc(0, 2)},
+    {name: "X2", prob: pd + pa, fair: 1 / (pd + pa), px: dc(1, 2)}], {note: "iz maržiranih cena 1X2"});
+  // two-way helper on a distribution with push handling
+  const tw = (d, lineA, signA, lineB, signB) => {
+    const A = PE.fairFromDist(d, lineA, signA), B = PE.fairFromDist(d, lineB, signB);
+    const px = PE.twoWay(A.odds, B.odds, m2).map(lad); return {fa: A.odds, fb: B.odds, a: px[0], b: px[1], WA: A.W};
+  };
+  const tot = [0.5, 1.5, 2.5, 3.5, 4.5, 5.5].map(l => ({l, ...tw(T1, -l, 1, l, -1)}));
+  const mt = tot.reduce((b, r) => Math.abs(r.fa - r.fb) < Math.abs(b.fa - b.fb) ? r : b);
+  html += pairTable("Ukupno golova", {hA: "Više", hB: "Manje", rows: tot.map(r => ({label: fmt(r.l, 1), ...r, main: r === mt}))}, "dva ishoda, " + (m2 * 100).toFixed(1) + "%");
+  // asian handicap: center on most balanced quarter line
+  const ahAll = []; for (let l = -3; l <= 3.001; l += 0.25) ahAll.push({l: Math.round(l * 4) / 4, ...tw(G, Math.round(l * 4) / 4, 1, -Math.round(l * 4) / 4, -1)});
+  const ci = ahAll.reduce((b, r, i) => Math.abs(r.fa - r.fb) < Math.abs(ahAll[b].fa - ahAll[b].fb) ? i : b, 0);
+  const ah = ahAll.slice(Math.max(0, ci - 4), ci + 5);
+  html += pairTable("Azijski hendikep", {hA: hN, hB: aN, rows: ah.map((r, i) => ({label: (r.l > 0 ? "+" : "") + fmt(r.l, 2), ...r, main: r === ahAll[ci]}))}, "linija za domaćina");
+  const pNo = (M[0].reduce((s, v) => s + v, 0)) + M.reduce((s, r) => s + r[0], 0) - M[0][0], btts = 1 - pNo;
+  const b2 = PE.applyMargin([btts, 1 - btts], m2).map(lad);
+  const dnb = tw(G, 0, 1, 0, -1);
+  html += market("Oba tima daju gol", [{name: "Da", prob: btts, fair: 1 / btts, px: b2[0]}, {name: "Ne", prob: 1 - btts, fair: 1 / (1 - btts), px: b2[1]}]);
+  html += market("Bez nerešenog", [{name: T[st.h].name, prob: ph / (ph + pa), fair: dnb.fa, px: dnb.a}, {name: T[st.a].name, prob: pa / (ph + pa), fair: dnb.fb, px: dnb.b}]);
+  const tt = (side) => {
+    const d = PE.dist(M, (i, j) => side === "h" ? i : j);
+    return [0.5, 1.5, 2.5].map(l => ({label: fmt(l, 1), ...tw(d, -l, 1, l, -1)}));
+  };
+  html += pairTable("Golovi " + T[st.h].name, {hA: "Više", hB: "Manje", rows: tt("h")}, "timski");
+  html += pairTable("Golovi " + T[st.a].name, {hA: "Više", hB: "Manje", rows: tt("a")}, "timski");
+  const H = PE.htft(L.lh, L.la, rho), ht = H.ht1x2, htp = PE.applyMargin(ht, m1 * 1.5).map(lad);
+  html += market("Poluvreme", [{name: "1", prob: ht[0], fair: 1 / ht[0], px: htp[0]}, {name: "X", prob: ht[1], fair: 1 / ht[1], px: htp[1]}, {name: "2", prob: ht[2], fair: 1 / ht[2], px: htp[2]}]);
+  const keys = ["1/1", "1/X", "1/2", "X/1", "X/X", "X/2", "2/1", "2/X", "2/2"], hf = keys.map(k => H.htft[k] || 1e-9);
+  const hfp = PE.applyMargin(hf, mm * 0.6).map(lad);
+  html += market("Poluvreme / kraj", keys.map((k, i) => ({name: k, prob: hf[i], fair: 1 / hf[i], px: hfp[i]})));
+  // correct score grid 0-5 + any other
+  const cells = [], probs = [];
+  for (let i = 0; i < 6; i++) for (let j = 0; j < 6; j++) { cells.push([i, j]); probs.push(M[i][j]); }
+  const other = 1 - probs.reduce((s, v) => s + v, 0); probs.push(other);
+  const csp = PE.applyMargin(probs, mm).map(lad);
+  let g = `<div class="cs"><div class="hd">${hN}\\${aN}</div>${[0,1,2,3,4,5].map(j => `<div class="hd">${j}</div>`).join("")}`;
+  for (let i = 0; i < 6; i++) { g += `<div class="hd">${i}</div>`; for (let j = 0; j < 6; j++) { const k = i * 6 + j; g += `<div class="c" title="fer ${fmt(1 / probs[k])}"><b>${fmt(csp[k], csp[k] >= 10 ? 1 : 2)}</b><small>${pct(probs[k])}</small></div>`; } }
+  g += `</div><p class="hint">Bilo koji drugi rezultat: ${fmt(csp[36], 1)} (fer ${pct(other)}). Marža ${((csp.reduce((s, x) => s + 1 / x, 0) - 1) * 100).toFixed(1)}%.</p>`;
+  html += `<div class="mk wide"><div class="mk-h"><h2>Tačan rezultat</h2><span class="or">kvota i fer verovatnoća</span></div><div class="scroll">${g}</div></div>`;
+  $("board").innerHTML = html;
+}
+
+function renderRatings() {
+  const rows = codes.map(c => {
+    const t = T[c], gf = Math.exp(D.mu + D.H / 2 + t.att), ga = Math.exp(D.mu + D.H / 2 + t.dfn);
+    return {c, t, gf, ga, net: gf - ga};
+  }).sort((a, b) => b.net - a.net);
+  const mx = Math.max(...rows.map(r => Math.abs(r.net)));
+  $("rtab").innerHTML = `<thead><tr><th>#</th><th>Tim</th><th>Dati</th><th>Primljeni</th><th>Razlika</th><th></th><th>Tabela</th></tr></thead><tbody>` +
+    rows.map((r, i) => `<tr><td>${i + 1}</td><td>${r.t.name}${r.t.promoted ? ' <span class="muted">(N)</span>' : ""}</td><td>${fmt(r.gf)}</td><td>${fmt(r.ga)}</td><td>${(r.net > 0 ? "+" : "") + fmt(r.net)}</td>
+     <td style="width:70px"><span class="bar" style="width:${Math.round(60 * Math.abs(r.net) / mx)}px;background:var(${r.net >= 0 ? "--good" : "--bad"})"></span></td><td>${r.t.pos}.</td></tr>`).join("") + "</tbody>";
+  const b = D.backtest;
+  $("bt").innerHTML = `<dt>Uzorak</dt><dd>${b.n_matches} mečeva, ${b.period}</dd>
+   <dt>RPS model</dt><dd>${b.rps_team.toFixed(4)}</dd><dt>RPS bazna stopa</dt><dd>${b.rps_baseline.toFixed(4)} (model bolji ${(100 * b.skill_vs_baseline).toFixed(1)}%)</dd>
+   <dt>RPS uz postave</dt><dd>${b.rps_with_lineup.toFixed(4)} naspram ${b.rps_team_same_matches.toFixed(4)} bez (${b.lineup_n} mečeva)</dd>
+   <dt>Remi: model / stvarno</dt><dd>${pct(b.draw_pred)} / ${pct(b.draw_obs)}</dd>
+   <dt>Baza λ</dt><dd>domaćin ${fmt(Math.exp(D.mu + D.H))}, gost ${fmt(Math.exp(D.mu))}</dd>`;
+}
+
+function renderFixtures() {
+  const days = ["ned", "pon", "uto", "sre", "čet", "pet", "sub"];
+  $("fx").innerHTML = D.fixtures.map((f, i) => {
+    const d = new Date(f.ko), lab = `${f.r}. kolo · ${days[d.getDay()]} ${d.getDate()}.${d.getMonth() + 1}. ${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
+    return `<button type="button" class="fx" data-i="${i}" aria-pressed="false"><small>${lab}</small><b>${T[f.h].short} – ${T[f.a].short}</b></button>`;
+  }).join("");
+  $("fx").querySelectorAll(".fx").forEach(b => b.addEventListener("click", () => { const f = D.fixtures[+b.dataset.i]; pick(String(f.h), String(f.a)); }));
+  const opts = codes.map(c => `<option value="${c}">${T[c].name}</option>`).join("");
+  $("selH").innerHTML = opts; $("selA").innerHTML = opts;
+}
+function pick(h, a) { st.h = h; st.a = a; $("selH").value = h; $("selA").value = a; update(); }
+
+function update() {
+  if (st.h === st.a) { st.a = codes.find(c => c !== st.h); $("selA").value = st.a; }
+  document.querySelectorAll(".fx").forEach(b => { const f = D.fixtures[+b.dataset.i]; b.setAttribute("aria-pressed", String(f.h) === st.h && String(f.a) === st.a); });
+  const L = lambdas();
+  renderMatch(L); renderLineup($("luH"), st.h, L.xh); renderLineup($("luA"), st.a, L.xa); renderBoard(L);
+}
+
+$("asof").textContent = `Stanje ${D.asof.split("-").reverse().join(".")}. ${D.data_note}`;
+$("beta").value = D.beta_a; $("rho").value = D.rho;
+["m1x2", "m2w", "mmw", "beta", "rho"].forEach(id => $(id).addEventListener("input", update));
+$("selH").addEventListener("change", e => pick(e.target.value, st.a));
+$("selA").addEventListener("change", e => pick(st.h, e.target.value));
+$("resetLu").addEventListener("click", () => { delete st.lu[st.h]; delete st.lu[st.a]; delete st.adj[st.h]; delete st.adj[st.a]; update(); });
+renderFixtures(); renderRatings();
+const big = D.fixtures.find(f => T[f.h].name === "Liverpool") || D.fixtures[0];
+pick(String(big.h), String(big.a));
+</script>

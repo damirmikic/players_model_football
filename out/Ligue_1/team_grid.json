@@ -1,0 +1,3936 @@
+{
+ "current": {
+  "xg_w": 0.5,
+  "ridge": 2.5,
+  "half_life_days": 365,
+  "prev_season_weight": 0.8,
+  "promo_shift": 0.08,
+  "nll": 3.0468480148171837,
+  "rps": 0.20437786312479583,
+  "n": 381
+ },
+ "grid": [
+  {
+   "xg_w": 0.0,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.115124019950667,
+   "rps": 0.21251507573013315,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.108325329730006,
+   "rps": 0.21179884354016695,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.1035642945288466,
+   "rps": 0.21129843285117433,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0991130672612055,
+   "rps": 0.2108329110740785,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.095342346040707,
+   "rps": 0.21000365940685778,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.090692603920983,
+   "rps": 0.20953307348366323,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.087847078138108,
+   "rps": 0.20926255164420204,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.085568185382346,
+   "rps": 0.20906848615358198,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.089777235705648,
+   "rps": 0.2092231400954986,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0862166153364714,
+   "rps": 0.20889153560396678,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.084231557835824,
+   "rps": 0.20873402329344637,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.082896609255009,
+   "rps": 0.20866650943626064,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0855867873068092,
+   "rps": 0.2085907902964,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.08318692763283,
+   "rps": 0.20841449467656847,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0820955291759478,
+   "rps": 0.20837985857673957,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0816718951199604,
+   "rps": 0.20843792781565032,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0919049196142963,
+   "rps": 0.21164155547485183,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.086897906669487,
+   "rps": 0.21097414043470403,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.083348934953342,
+   "rps": 0.21049986020751,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0800152754619696,
+   "rps": 0.21005768572848424,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0773690447566926,
+   "rps": 0.20929172116301242,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0737774385533188,
+   "rps": 0.20883215371508443,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0715855956198395,
+   "rps": 0.20856234319385292,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0698880427494766,
+   "rps": 0.2083678699061314,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.073049945285187,
+   "rps": 0.20853104381430942,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0702930863478355,
+   "rps": 0.20819981577701088,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0688114050636783,
+   "rps": 0.20803993491356024,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0678730407106545,
+   "rps": 0.20796465831493885,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0697380685366107,
+   "rps": 0.20789812125262133,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.067943585327016,
+   "rps": 0.207717912653019,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0672145953292986,
+   "rps": 0.20767634692200326,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0670796338318613,
+   "rps": 0.20772639407006752,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.080266842457101,
+   "rps": 0.2118408610787375,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.075995045149836,
+   "rps": 0.2111371665396379,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.072891829119049,
+   "rps": 0.2106165792487204,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0699207891615727,
+   "rps": 0.21010924165577458,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0675219516016083,
+   "rps": 0.20928462470524575,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0643181009367986,
+   "rps": 0.20874303361637203,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.062334279477644,
+   "rps": 0.2084053595909517,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0607827309899576,
+   "rps": 0.20813817282619043,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.063589394779924,
+   "rps": 0.20842054998240495,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0611098031453436,
+   "rps": 0.20800287724408884,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0597593302129087,
+   "rps": 0.20777625568304298,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.05894004142042,
+   "rps": 0.2076380852464844,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0605055913160832,
+   "rps": 0.20767657245457818,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.058897673036173,
+   "rps": 0.20741447282144432,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0582748837192404,
+   "rps": 0.20731732470493724,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0582147788143486,
+   "rps": 0.20731368209676954,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0781885093560746,
+   "rps": 0.2135012912969693,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.074179713855723,
+   "rps": 0.21275056621899713,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0711028916548075,
+   "rps": 0.2121532098790207,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0679684469465895,
+   "rps": 0.2115270628653846,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.064718191533247,
+   "rps": 0.21047738536482466,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.061231630311417,
+   "rps": 0.2097562463758494,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0588826843727284,
+   "rps": 0.20925375520509468,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.056846543493896,
+   "rps": 0.20880001192919614,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.060167511076939,
+   "rps": 0.20935774664926463,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.05725204399936,
+   "rps": 0.2087316027801817,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0554758251520293,
+   "rps": 0.20833144618787935,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.054147467097829,
+   "rps": 0.20800780954014467,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0563087582281545,
+   "rps": 0.20832974775381088,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0541904029420226,
+   "rps": 0.20785001396628255,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.053134386790545,
+   "rps": 0.20758481078791133,
+   "n": 381
+  },
+  {
+   "xg_w": 0.0,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.052625511987757,
+   "rps": 0.20741679137317637,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0850014989514367,
+   "rps": 0.209014204954885,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0804662812956223,
+   "rps": 0.20848240671493365,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0773930775804805,
+   "rps": 0.20811758774130457,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.074616452294104,
+   "rps": 0.20778932414370227,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0721401801726453,
+   "rps": 0.20715323945743938,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0694610643307136,
+   "rps": 0.20684725244685995,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0679873887762854,
+   "rps": 0.20669231651593614,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.067014715218698,
+   "rps": 0.20660681725519325,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.068776679079219,
+   "rps": 0.2065814346598749,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.066963032085644,
+   "rps": 0.20639570781532446,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.066167663096878,
+   "rps": 0.20633568970724536,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0659208166921657,
+   "rps": 0.20635577259277724,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.066427897317023,
+   "rps": 0.2061221740391096,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0655212635569455,
+   "rps": 0.20606714067262247,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0654346396720915,
+   "rps": 0.2061098606539925,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0658840136851224,
+   "rps": 0.2062313558903004,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.070287844799329,
+   "rps": 0.20883380004897642,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0665840325291236,
+   "rps": 0.2082695848431697,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0640313256250504,
+   "rps": 0.20787400848177845,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.061715733287996,
+   "rps": 0.20751044453872547,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.059698719994008,
+   "rps": 0.2068634979644043,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0574276457264533,
+   "rps": 0.20651276524658127,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.056183011103718,
+   "rps": 0.20631970579688436,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0554046821541827,
+   "rps": 0.2061993138560589,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0567906168118437,
+   "rps": 0.20623816735637981,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0552690407651086,
+   "rps": 0.20600701919589198,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0546377087239396,
+   "rps": 0.20591550248818377,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.054515268599638,
+   "rps": 0.20590465132090746,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0547283079198913,
+   "rps": 0.20572201297356316,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0540211531245887,
+   "rps": 0.2056267148661401,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0540285306500503,
+   "rps": 0.2056417712115392,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0545650937680526,
+   "rps": 0.20574274769660425,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0653001140482403,
+   "rps": 0.20971008593249454,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0617459800125086,
+   "rps": 0.20904589718380434,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0591891513092038,
+   "rps": 0.2085556721927592,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0567876995631726,
+   "rps": 0.20808189768711569,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0545541975778265,
+   "rps": 0.20731697833775473,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0521476022482643,
+   "rps": 0.2068294643582615,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0507422627366982,
+   "rps": 0.2065309389774074,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0497609829201426,
+   "rps": 0.2063039249139873,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0514021374391547,
+   "rps": 0.20652064203392315,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.049688551815352,
+   "rps": 0.206156208243068,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0488915258846516,
+   "rps": 0.20596900370315713,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0485826854402545,
+   "rps": 0.20586411354105705,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0490225281653167,
+   "rps": 0.20583683346042703,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.048117907800645,
+   "rps": 0.20562232736825276,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.047968084540356,
+   "rps": 0.20555510504222263,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.048331475293118,
+   "rps": 0.20557860850393947,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0688363932176386,
+   "rps": 0.21203945268510702,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.065213311270939,
+   "rps": 0.21128577126963083,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0624237212116863,
+   "rps": 0.2106843420950794,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.059582946686059,
+   "rps": 0.2100523701131403,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.056273981321621,
+   "rps": 0.2090292166408719,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.053211982063245,
+   "rps": 0.2083131866890134,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.051165530174834,
+   "rps": 0.20781372570444304,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0494160471561202,
+   "rps": 0.2073615394157258,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0520782804152438,
+   "rps": 0.20792003137630397,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0495753975889452,
+   "rps": 0.20730133656627361,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0480777697898715,
+   "rps": 0.2069054047003417,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0470020639732196,
+   "rps": 0.20658476661127342,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.048526949010782,
+   "rps": 0.2069009512818395,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.046777229066722,
+   "rps": 0.20642834136781596,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.045954498787287,
+   "rps": 0.20616609477665535,
+   "n": 381
+  },
+  {
+   "xg_w": 0.25,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0456276620120692,
+   "rps": 0.2059958772173862,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.064813094658422,
+   "rps": 0.2063398467242186,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0619007860532568,
+   "rps": 0.2059430415254423,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0600535645709313,
+   "rps": 0.20568365371396655,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.058533454204177,
+   "rps": 0.20546524897809137,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0574932666843035,
+   "rps": 0.2050276296020669,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.056343109608862,
+   "rps": 0.20486310795546503,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0559824303967953,
+   "rps": 0.2048134982673978,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0561110713958364,
+   "rps": 0.20483583023986546,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.056044612267133,
+   "rps": 0.2046557471788387,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.055647523344381,
+   "rps": 0.204604633238397,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.055870890967967,
+   "rps": 0.2046460412071484,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0566352101750094,
+   "rps": 0.2047707122470078,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0554289350920056,
+   "rps": 0.20438408906648334,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0558284171217207,
+   "rps": 0.20445650674156426,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.056640718296251,
+   "rps": 0.20459111295155427,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0579603629680085,
+   "rps": 0.20480416431306445,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0557263401809234,
+   "rps": 0.20660898180973797,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.05301417632399,
+   "rps": 0.20612580379989426,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0512400406662747,
+   "rps": 0.20579632734825454,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.04974544940362,
+   "rps": 0.20550325602417657,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.048658333853103,
+   "rps": 0.2049897340840181,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0474803302113984,
+   "rps": 0.20474205940570742,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0470713478852622,
+   "rps": 0.20463174515036206,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.047126118033263,
+   "rps": 0.20459600852180687,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0471181561031915,
+   "rps": 0.20451075896989263,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0466750939818312,
+   "rps": 0.20438693051564266,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0468480148171837,
+   "rps": 0.20437786312479583,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0475178843141917,
+   "rps": 0.20445172266784462,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.046378394039415,
+   "rps": 0.2041436169042917,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0466891591202123,
+   "rps": 0.20415191218515563,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0474304297835526,
+   "rps": 0.2042442492396202,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0486658621592917,
+   "rps": 0.20442255958945005,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0553126388853196,
+   "rps": 0.20794483099224628,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0523330096236454,
+   "rps": 0.20731561325389575,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.050241308153147,
+   "rps": 0.20685577750127399,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0483357799727804,
+   "rps": 0.2064156583478793,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.046636973203036,
+   "rps": 0.2057309263609508,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0449635597112508,
+   "rps": 0.20530788780321746,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0441262794567505,
+   "rps": 0.20506303704520354,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0437329740838863,
+   "rps": 0.20489407066569376,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0443911888278588,
+   "rps": 0.20502747432631704,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0434321476093804,
+   "rps": 0.20473740757488623,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0432039795794337,
+   "rps": 0.20460718051422183,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.043466063274267,
+   "rps": 0.20456503844469184,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0429279508034126,
+   "rps": 0.20444740499872388,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0427697442168133,
+   "rps": 0.20431072899046648,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.043174401593585,
+   "rps": 0.20430462682586475,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0440731071441305,
+   "rps": 0.20438978694041382,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0628533630413446,
+   "rps": 0.21075308682368785,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.059559882572228,
+   "rps": 0.20999850236312717,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0570276712924147,
+   "rps": 0.2093962777987636,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0544598651389907,
+   "rps": 0.20876436434045767,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0514720866684106,
+   "rps": 0.20778890825648821,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.048850727728366,
+   "rps": 0.20709265416466874,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0471437986712284,
+   "rps": 0.20661206243968336,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0457561652920018,
+   "rps": 0.20618451111294417,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.047828129207001,
+   "rps": 0.20671879937926094,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0457873044730173,
+   "rps": 0.206130761096724,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0446541441966617,
+   "rps": 0.2057631287691063,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.043946011591822,
+   "rps": 0.2054763350969424,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.044856351237156,
+   "rps": 0.2057533724167811,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0435844340024,
+   "rps": 0.20532057234296625,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0431192859024865,
+   "rps": 0.20509335643150037,
+   "n": 381
+  },
+  {
+   "xg_w": 0.5,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.043152911719622,
+   "rps": 0.20496426586915945,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0541079238514053,
+   "rps": 0.2046524893444368,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.052126543100265,
+   "rps": 0.20433540324371902,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0509991781124692,
+   "rps": 0.20414040288449511,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.050251098809605,
+   "rps": 0.2039945851324868,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0501572366955285,
+   "rps": 0.2036825784513745,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.04995817402777,
+   "rps": 0.2036170682125371,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0503298254058877,
+   "rps": 0.2036455772661482,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0512001461724316,
+   "rps": 0.20375366872156672,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.049933202618857,
+   "rps": 0.20344904434749236,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.050478229481621,
+   "rps": 0.2035015784977617,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0514095589023458,
+   "rps": 0.2036249109451496,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0528797441074933,
+   "rps": 0.20383131304392296,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.050517585080988,
+   "rps": 0.20332132920893262,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0518038931166176,
+   "rps": 0.2034952199145104,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.053256011684019,
+   "rps": 0.20370751058418907,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0551721121430186,
+   "rps": 0.20399516518589192,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.048051902389013,
+   "rps": 0.20516514725159582,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0459457071967186,
+   "rps": 0.20472982054049307,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.044667072058772,
+   "rps": 0.20444379905463383,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0437053130339957,
+   "rps": 0.20420129614767,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0432844024908294,
+   "rps": 0.20377259649251844,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.042847409365055,
+   "rps": 0.2036033748477509,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0430082321093455,
+   "rps": 0.2035555876019934,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.043668969756577,
+   "rps": 0.20359117959129078,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.042696928844673,
+   "rps": 0.2034026311024833,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0430039329510676,
+   "rps": 0.20336304571453576,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0437550561187123,
+   "rps": 0.20342245304668355,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.045006657200351,
+   "rps": 0.20356931161816044,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.042901672302336,
+   "rps": 0.2031501099943222,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0439589773940985,
+   "rps": 0.20324861205117,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0452627507343655,
+   "rps": 0.20341066193940524,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.047054684757438,
+   "rps": 0.20366070082835463,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.05019188360737,
+   "rps": 0.20676051589456518,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0475890634368747,
+   "rps": 0.20615317383048504,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.045818654099807,
+   "rps": 0.20571648246440838,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0442619975564056,
+   "rps": 0.20530394374899108,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0430213647915947,
+   "rps": 0.20467391340808314,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.04187214502358,
+   "rps": 0.20430226811148364,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.041457929370027,
+   "rps": 0.20410302766108587,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.041524752431259,
+   "rps": 0.20398780965339014,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0414565081415446,
+   "rps": 0.20404382407509883,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.04106080187468,
+   "rps": 0.20381580309094324,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0412768914234776,
+   "rps": 0.20373922050573154,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.042015004052972,
+   "rps": 0.2037589466266542,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0407176152779294,
+   "rps": 0.20355159015725766,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.04114019868525,
+   "rps": 0.2034861791046046,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0419849091512994,
+   "rps": 0.2035379699779418,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.043350542858651,
+   "rps": 0.20368633122996038,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0600619665603714,
+   "rps": 0.20985618829180863,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.056993400219972,
+   "rps": 0.2091004926914792,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0546508485971318,
+   "rps": 0.20849930559331173,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.052295873400922,
+   "rps": 0.20786949986195008,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0496498484512586,
+   "rps": 0.2069302356758574,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.047368473869735,
+   "rps": 0.2062540102686162,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.045949663050965,
+   "rps": 0.20579583754907355,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.044876419681925,
+   "rps": 0.20539802126883838,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0464723175645045,
+   "rps": 0.20589741713221413,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.044817062379999,
+   "rps": 0.20534190826827872,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.043999279405386,
+   "rps": 0.2050068285342414,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0436295489490295,
+   "rps": 0.2047598957294846,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0440121269643443,
+   "rps": 0.2049844952022459,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0431583696676077,
+   "rps": 0.20459834599642984,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0430143275141903,
+   "rps": 0.2044116035552529,
+   "n": 381
+  },
+  {
+   "xg_w": 0.7,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0433975685731958,
+   "rps": 0.20432992997122754,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.048995359337157,
+   "rps": 0.20365136598149106,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0475316094710614,
+   "rps": 0.20337662377888754,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.046802527039412,
+   "rps": 0.20321956687002543,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0464922895720434,
+   "rps": 0.20311645479749083,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0469935490485405,
+   "rps": 0.2028793434496219,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.047391735563618,
+   "rps": 0.20287868546358456,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0482261640996855,
+   "rps": 0.20296194507026272,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.049596273732747,
+   "rps": 0.20313166875667646,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0475615718260993,
+   "rps": 0.2027395819461,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.048716716675687,
+   "rps": 0.20286450224259847,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.05011698835613,
+   "rps": 0.20304685859877777,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0520482646373273,
+   "rps": 0.20331495747818118,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.048923999537092,
+   "rps": 0.20271172687898167,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0507911007343216,
+   "rps": 0.20295965616708847,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.052693244486285,
+   "rps": 0.20323099677978798,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0550912416882623,
+   "rps": 0.2035853830059432,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0444598057808374,
+   "rps": 0.2042772724548209,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0427159441887417,
+   "rps": 0.20387122280348446,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0417327877835167,
+   "rps": 0.20361248024917494,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0411036464659027,
+   "rps": 0.20340235111129934,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.041140032025028,
+   "rps": 0.20302347315817823,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.041173702089667,
+   "rps": 0.202908056874568,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0417161870280807,
+   "rps": 0.20290765185333506,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0427898134772,
+   "rps": 0.20299633792676233,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.041182217553444,
+   "rps": 0.20272899703988456,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0419877034336436,
+   "rps": 0.2027511128428641,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.043135594153712,
+   "rps": 0.2028628689145123,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.044803844576376,
+   "rps": 0.2030666369341804,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.042046178221543,
+   "rps": 0.2025629407934337,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.043612738754549,
+   "rps": 0.20272875679182906,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0453122487726025,
+   "rps": 0.20294708371809375,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0475139155991506,
+   "rps": 0.20325596336329196,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.047938311127915,
+   "rps": 0.20600769269532387,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0455790327107484,
+   "rps": 0.20541505500889123,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0440093059857958,
+   "rps": 0.20499229261546326,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0426869421222276,
+   "rps": 0.20459939118562756,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0418034467513384,
+   "rps": 0.20400341562218327,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.041020021051378,
+   "rps": 0.2036711626310425,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0409056335092486,
+   "rps": 0.20350768636454994,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0412959264446813,
+   "rps": 0.20343431081811886,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0407292462181177,
+   "rps": 0.20342873815246024,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0407327779702884,
+   "rps": 0.20324935929850696,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0412712155651187,
+   "rps": 0.20321592658773582,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.042359073112932,
+   "rps": 0.20328602351003108,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0405151222633755,
+   "rps": 0.20300449870306947,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.041362313883758,
+   "rps": 0.20299604802874488,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.042543068160166,
+   "rps": 0.2030965020202365,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0442631504396287,
+   "rps": 0.2032996535005521,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0590810024030324,
+   "rps": 0.20926217700766087,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.056160013912827,
+   "rps": 0.208504725840968,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0539493147242354,
+   "rps": 0.20790446490842268,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0517534305498133,
+   "rps": 0.20727989852808862,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.049405928068931,
+   "rps": 0.2063643875517412,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0473769220393203,
+   "rps": 0.20570682397667656,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0461723708988533,
+   "rps": 0.20526845997410614,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.045350787939702,
+   "rps": 0.20489824460702122,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.046591251849034,
+   "rps": 0.20536262453920576,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0452325882492137,
+   "rps": 0.20483748793820636,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.044652048603349,
+   "rps": 0.20453109540614214,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0445565828230614,
+   "rps": 0.20432033900345317,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0445387752943187,
+   "rps": 0.20449677244462122,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0440022478922506,
+   "rps": 0.20414839291524745,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.044133083252776,
+   "rps": 0.20400061379267448,
+   "n": 381
+  },
+  {
+   "xg_w": 0.85,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0448014389457545,
+   "rps": 0.20396386041140244,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0462250917372473,
+   "rps": 0.2028756707493159,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0451137999911753,
+   "rps": 0.20262503754407307,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0446972671974466,
+   "rps": 0.20249588734795415,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 1.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.044738172350298,
+   "rps": 0.2024304571986622,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.045737342236266,
+   "rps": 0.2022486130937149,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0466194274555574,
+   "rps": 0.2023058134114568,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0478408919383155,
+   "rps": 0.2024386065093253,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 1.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.049640874643938,
+   "rps": 0.20266893760031615,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.046974079179498,
+   "rps": 0.2021930789393342,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.048629496337944,
+   "rps": 0.20238361312863712,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0504390485908095,
+   "rps": 0.20262153210783568,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 1.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0527966820815142,
+   "rps": 0.2029516108018348,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.049031389720612,
+   "rps": 0.20225996136062713,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0514185243774707,
+   "rps": 0.20258109105606067,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0537281976736637,
+   "rps": 0.2029127393169675,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 1.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0565449228961974,
+   "rps": 0.20333108091411187,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.042626302977224,
+   "rps": 0.20355925257333055,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.041167306331818,
+   "rps": 0.203173598922462,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.040419586808663,
+   "rps": 0.20293489743136253,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.040071775183194,
+   "rps": 0.20275405941335767,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0405216680378992,
+   "rps": 0.2024146778049152,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.040970039358071,
+   "rps": 0.20234911250555135,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0418500080394923,
+   "rps": 0.20239197119176927,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.043304191121843,
+   "rps": 0.20253419905812664,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0411273942836714,
+   "rps": 0.2021887124332501,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.042380041215931,
+   "rps": 0.20227099413853747,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.043890307989444,
+   "rps": 0.20243430791766112,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0459665876082314,
+   "rps": 0.20270008628087108,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0425963735248724,
+   "rps": 0.20210641044734895,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0446342336320775,
+   "rps": 0.2023396089814103,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0467107711516803,
+   "rps": 0.20261609474820758,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0493112490594037,
+   "rps": 0.20298746258564093,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.046985921319581,
+   "rps": 0.20537223170699467,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.044827012671488,
+   "rps": 0.20478955402981242,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0434429169688517,
+   "rps": 0.2043798707119542,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 5.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.042337028002047,
+   "rps": 0.20400597486013575,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.041808616590432,
+   "rps": 0.20343848929483552,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0413521665449066,
+   "rps": 0.20314387313866789,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0415193343651503,
+   "rps": 0.20301615796368572,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 5.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0422348610904115,
+   "rps": 0.20298858343327525,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.04119880318138,
+   "rps": 0.20291706931794024,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0415713284380637,
+   "rps": 0.20278686507743435,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.042434150505865,
+   "rps": 0.2028007534040203,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 5.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0438660908141895,
+   "rps": 0.20292268833499535,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.041502174158731,
+   "rps": 0.2025625165521963,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0427491365321506,
+   "rps": 0.20261330183346973,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.044268437541129,
+   "rps": 0.2027669974826596,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 5.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.046357899162702,
+   "rps": 0.20302914158413832,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0590229292775777,
+   "rps": 0.2087366724022835,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.056232318243311,
+   "rps": 0.20797684212705692,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0541442932083713,
+   "rps": 0.20737799300934845,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 10.0,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0521015575576182,
+   "rps": 0.20675916134871042,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.050084894131283,
+   "rps": 0.2058673848082116,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.048303693966945,
+   "rps": 0.2052296013291428,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.047322835252211,
+   "rps": 0.20481359953402822,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 10.0,
+   "half_life_days": 240,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.04675367335825,
+   "rps": 0.20447465864144843,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0476475607345312,
+   "rps": 0.20489845195798814,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0465708300078487,
+   "rps": 0.20440414830034745,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.0462475568582623,
+   "rps": 0.20413120685063982,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 10.0,
+   "half_life_days": 365,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.0464432256802696,
+   "rps": 0.20396410422155964,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.5,
+   "promo_shift": 0.08,
+   "nll": 3.0460156354478283,
+   "rps": 0.20408106953109453,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.65,
+   "promo_shift": 0.08,
+   "nll": 3.0458119789756584,
+   "rps": 0.20378000441135927,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 0.8,
+   "promo_shift": 0.08,
+   "nll": 3.046213784532861,
+   "rps": 0.2036730419460915,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 10.0,
+   "half_life_days": 730,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.047202319135366,
+   "rps": 0.20368807425074495,
+   "n": 381
+  }
+ ],
+ "promo": [
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.0,
+   "nll": 3.042852413573442,
+   "rps": 0.20345828053342213,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.04,
+   "nll": 3.0413480138540954,
+   "rps": 0.2030760544715027,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.08,
+   "nll": 3.040071775183194,
+   "rps": 0.20275405941335767,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.12,
+   "nll": 3.0390280466078026,
+   "rps": 0.20249044866331264,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.18,
+   "nll": 3.037897834753308,
+   "rps": 0.20220706132797317,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.25,
+   "nll": 3.037236769535655,
+   "rps": 0.20204230906906998,
+   "n": 381
+  },
+  {
+   "xg_w": 1.0,
+   "ridge": 2.5,
+   "half_life_days": 120,
+   "prev_season_weight": 1.0,
+   "promo_shift": 0.35,
+   "nll": 3.0375290145771645,
+   "rps": 0.2021042010533534,
+   "n": 381
+  }
+ ],
+ "best": {
+  "xg_w": 1.0,
+  "ridge": 2.5,
+  "half_life_days": 120,
+  "prev_season_weight": 1.0,
+  "promo_shift": 0.25,
+  "nll": 3.037236769535655,
+  "rps": 0.20204230906906998,
+  "n": 381
+ }
+}

@@ -1,0 +1,43 @@
+{
+ "xg_w": 0.5,
+ "rho": -0.04,
+ "promo_shift": 0.08,
+ "fit": {
+  "ridge": 1.0,
+  "half_life_days": 365,
+  "prev_season_weight": 0.8
+ },
+ "beta_a": 0.0,
+ "beta_d": 0.0,
+ "leagues": {
+  "La_liga": {
+   "rho": -0.06
+  },
+  "Bundesliga": {
+   "rho": -0.04
+  },
+  "Serie_A": {
+   "rho": 0.0
+  },
+  "Ligue_1": {
+   "rho": 0.0
+  },
+  "EPL": {
+   "rho": -0.12
+  }
+ },
+ "_rho_note": "rho per league = argmin exact-score NLL (fit_rho.py), walk-forward 2025/26-2026/27, lineup-adjusted λ; default = pooled optimum.",
+ "_team_note": "2026-10-31: per-league tuning of xg_w/fit/promo_shift (tune_team.py, 384-combo grid) was REJECTED: tuned on 2025/26 it lost on 2026/27 holdout (pooled log-lik -6.3, RPS 0.2007 vs 0.1991). Shared values rank 6/384 pooled, within 0.9 log-lik of best. Re-check when more seasons are available.",
+ "beta_inj": 0.0,
+ "beta_rot": 0.0,
+ "_lineup_note": "2026-10-31: lineup effect split into injuries (beta_inj: available XI / habitual XI, FotMob pre-match unavailable lists) and lineup surprises (beta_rot: actual XI / available XI), both centred per league (fit_lineup.py). With 2160 matches of real FotMob injury lists the pooled optimum is 0 / 0 (crit 3.3574 vs 3.3576 at rot 0.25; RPS best at 0) and the 2025/26->2026/27 holdout also picks 0 / 0. With npxG+xA player ratings, lineup information does not improve prices. Traders can still set betas in the UI.",
+ "mkt_w": 1.0,
+ "_mkt_note": "Rating target = closing-market λ of past matches (football-data 1X2 + O/U 2.5) where available, else goals/xG blend; the market of the match being priced is never used. fit_mkt_ratings.py, pooled 5 leagues: m chosen 1.0 on 2025-26; holdout 2026-27 RPS 0.19905 -> 0.19517 (pre-match market 0.19486).",
+ "fit_late": {
+  "ridge": 0.5,
+  "half_life_days": 90,
+  "prev_season_weight": 0.5
+ },
+ "late_round": 11,
+ "_fit_note": "With mkt_w=1 (tune_mkt.py, pooled 5 leagues). Rounds 1-10: ridge 1.0 (was 2.5) — better on 2025-26 rounds 1-10 and on the 2026-27 holdout (RPS 0.19437 -> 0.19388). Rounds 11+: fit_late, short memory — 2025-26 rounds 11+ RPS 0.20228 -> 0.20060, chosen in-sample; re-check on 2026-27 rounds 11+ once ~10 such rounds are played."
+}

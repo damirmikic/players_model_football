@@ -1,0 +1,18 @@
+{
+ "n_matches": 470,
+ "period": "2025/26 \u2013 2026/27 (walk-forward)",
+ "rps_team": 0.19682,
+ "rps_baseline": 0.23495,
+ "skill_vs_baseline": 0.1623,
+ "rps_with_lineup": 0.19682,
+ "rps_team_same_matches": 0.19682,
+ "lineup_n": 470,
+ "beta_inj": 0.0,
+ "beta_rot": 0.0,
+ "draw_pred": 0.247,
+ "draw_obs": 0.245,
+ "market_n": 470,
+ "rps_market": 0.19463,
+ "rps_model_market_matches": 0.19682,
+ "market_src": "AvgC+BFEC"
+}

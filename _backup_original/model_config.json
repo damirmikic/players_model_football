@@ -1,0 +1,13 @@
+{
+ "league": "EPL",
+ "xg_w": 0.5,
+ "rho": -0.12,
+ "promo_shift": 0.08,
+ "fit": {
+  "ridge": 2.5,
+  "half_life_days": 365,
+  "prev_season_weight": 0.8
+ },
+ "beta_a": 0.5,
+ "beta_d": 0.0
+}
