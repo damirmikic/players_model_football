@@ -70,7 +70,11 @@ def fetch_fotmob(key, now=None):
 
 
 def update(key):
-    data = fetch_fotmob(key)
+    try:
+        data = fetch_fotmob(key)
+    except Exception as e:
+        print(f"[lineups {key}] [warn] FotMob unreachable ({e}); keeping cached lineups.json", flush=True)
+        return
     path = os.path.join(load.RAW, key, leagues.CURRENT, "lineups.json")
     os.makedirs(os.path.dirname(path), exist_ok=True)
     json.dump(data, open(path, "w", encoding="utf-8"), ensure_ascii=False)

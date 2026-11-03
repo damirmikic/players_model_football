@@ -22,15 +22,15 @@ class Understat:
 
     def __init__(self):
         self.op = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
-        self._get("league/EPL", ajax=False)          # session cookie
+        self.online = True
 
-    def _get(self, path, referer=None, ajax=True, tries=4):
+    def _get(self, path, referer=None, ajax=True, tries=2, timeout=12):
         h = {"User-Agent": UA, "Accept-Encoding": "gzip"}
         if ajax:
             h.update({"X-Requested-With": "XMLHttpRequest", "Referer": referer or self.BASE})
         for i in range(tries):
             try:
-                with self.op.open(urllib.request.Request(self.BASE + path, headers=h), timeout=30) as r:
+                with self.op.open(urllib.request.Request(self.BASE + path, headers=h), timeout=timeout) as r:
                     b = r.read()
                     if r.headers.get("Content-Encoding") == "gzip":
                         b = gzip.decompress(b)
@@ -39,7 +39,7 @@ class Understat:
                 if i == tries - 1:
                     raise
                 print(f"  retry {path}: {e}", flush=True)
-                time.sleep(3 * (i + 1))
+                time.sleep(2 * (i + 1))
 
     def league(self, code, year):
         return json.loads(self._get(f"getLeagueData/{code}/{year}", f"{self.BASE}league/{code}/{year}"))
@@ -50,7 +50,7 @@ class Understat:
 
 def _fetch(url):
     req = urllib.request.Request(url, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=30) as r:
+    with urllib.request.urlopen(req, timeout=20) as r:
         return r.read()
 
 
@@ -69,17 +69,28 @@ def update(key, us=None):
     for s in L.SEASONS:
         cur = s == L.CURRENT
         lp = os.path.join(root, s, "understat_league.json")
-        if cur or not os.path.exists(lp):
-            _write(lp, us.league(cfg["understat"], L.understat_year(s)))
-        lg = json.load(open(lp, encoding="utf-8"))
-        done = [m["id"] for m in lg["dates"] if m["isResult"]]
-        todo = [mid for mid in done if not os.path.exists(os.path.join(root, s, "matches", mid + ".json"))]
-        print(f"[{key} {s}] {len(done)} finished, {len(todo)} match files to fetch", flush=True)
-        for i, mid in enumerate(todo):
-            _write(os.path.join(root, s, "matches", mid + ".json"), us.match(mid))
-            if (i + 1) % 50 == 0:
-                print(f"  {i + 1}/{len(todo)}", flush=True)
-            time.sleep(DELAY)
+        if us.online and (cur or not os.path.exists(lp)):
+            try:
+                _write(lp, us.league(cfg["understat"], L.understat_year(s)))
+            except Exception as e:
+                us.online = False
+                print(f"  [warn] Understat unreachable ({e}); using cached Understat data on disk", flush=True)
+        if os.path.exists(lp):
+            lg = json.load(open(lp, encoding="utf-8"))
+            done = [m["id"] for m in lg["dates"] if m["isResult"]]
+            todo = [mid for mid in done if not os.path.exists(os.path.join(root, s, "matches", mid + ".json"))]
+            print(f"[{key} {s}] {len(done)} finished, {len(todo)} match files to fetch", flush=True)
+            if us.online:
+                for i, mid in enumerate(todo):
+                    try:
+                        _write(os.path.join(root, s, "matches", mid + ".json"), us.match(mid))
+                    except Exception as e:
+                        us.online = False
+                        print(f"  [warn] Understat match fetch failed ({e}); skipping remaining", flush=True)
+                        break
+                    if (i + 1) % 50 == 0:
+                        print(f"  {i + 1}/{len(todo)}", flush=True)
+                    time.sleep(DELAY)
         op = os.path.join(root, s, "fd_odds.csv")
         if cur or not os.path.exists(op):
             try:
@@ -87,8 +98,11 @@ def update(key, us=None):
             except Exception as e:
                 print(f"  football-data {s}: {e}")
     if cfg["fpl"]:
-        _write(os.path.join(root, L.CURRENT, "fpl_bootstrap.json"),
-               _fetch("https://fantasy.premierleague.com/api/bootstrap-static/"))
+        try:
+            _write(os.path.join(root, L.CURRENT, "fpl_bootstrap.json"),
+                   _fetch("https://fantasy.premierleague.com/api/bootstrap-static/"))
+        except Exception as e:
+            print(f"  fpl {key}: {e}")
     print(f"[{key}] done", flush=True)
 
 

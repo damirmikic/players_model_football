@@ -6,6 +6,8 @@ import leagues
 
 CODE_DIR = os.path.dirname(os.path.abspath(__file__))
 BUILD_DIR = os.path.abspath(os.path.join(CODE_DIR, "..", "build"))
+VENV_PY = os.path.abspath(os.path.join(CODE_DIR, "..", ".venv", "bin", "python"))
+PY = VENV_PY if os.path.exists(VENV_PY) else sys.executable
 
 
 class Handler(http.server.SimpleHTTPRequestHandler):
@@ -23,10 +25,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self.send_error(400, f"Unknown league: {lg}")
             return
         try:
-            py = sys.executable
-            subprocess.run([py, "lineups.py", lg], cwd=CODE_DIR, check=True)
-            subprocess.run([py, "export.py", lg], cwd=CODE_DIR, check=True)
-            subprocess.run([py, "build.py"], cwd=CODE_DIR, check=True)
+            subprocess.run([PY, "lineups.py", lg], cwd=CODE_DIR, check=True)
+            subprocess.run([PY, "export.py", lg], cwd=CODE_DIR, check=True)
+            subprocess.run([PY, "build.py"], cwd=CODE_DIR, check=True)
             data_path = os.path.join(BUILD_DIR, f"data_{lg}.json")
             payload = open(data_path, "rb").read()
             self.send_response(200)

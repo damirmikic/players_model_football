@@ -5,7 +5,7 @@
     python run.py --no-fetch EPL     # reuse raw data already on disk (no downloads at all)
     python run.py --lineups          # only refresh lineups/injuries and rebuild pages (~1 min per league)
     python run.py --serve            # start local web server after running pipeline"""
-import subprocess, sys
+import os, subprocess, sys
 import leagues
 
 args = sys.argv[1:]
@@ -13,7 +13,8 @@ fetch = "--no-fetch" not in args
 only_lineups = "--lineups" in args
 serve = "--serve" in args
 keys = [a for a in args if not a.startswith("--")] or list(leagues.LEAGUES)
-py = sys.executable
+venv_py = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".venv", "bin", "python"))
+py = venv_py if os.path.exists(venv_py) else sys.executable
 
 
 def step(*cmd):
